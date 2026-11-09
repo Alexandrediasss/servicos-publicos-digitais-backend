@@ -1,0 +1,23 @@
+# Segredos: o .env tem a configuração (e talvez chaves) de cada computador. NUNCA vai para o Git.
+.env
+.env.*
+!.env.example
+
+# Ambiente virtual do Python e caches
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Editores e sistema
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Configurações pessoais do Claude Code (o CLAUDE.md do projeto vai para o Git)
+.claude/settings.local.json

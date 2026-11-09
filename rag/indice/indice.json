@@ -1,0 +1,813 @@
+{
+ "version": 1,
+ "created_at": "2026-11-09T03:23:40Z",
+ "documents": [
+  {
+   "id": "alistamento-militar",
+   "file": "alistamento-militar.md",
+   "title": "Alistamento militar — quem precisa e quando",
+   "source": "https://alistamento.eb.mil.br",
+   "category": "cidadania",
+   "updated_at": "2026-11-08",
+   "status": "rascunho",
+   "chunks": 5
+  },
+  {
+   "id": "atendimento-presencial-manaus",
+   "file": "atendimento-presencial-manaus.md",
+   "title": "Atendimento presencial em Manaus — PAC, CRAS e UBS",
+   "source": "https://www.manaus.am.gov.br",
+   "category": "geral",
+   "updated_at": "2026-11-08",
+   "status": "rascunho",
+   "chunks": 5
+  },
+  {
+   "id": "cadunico",
+   "file": "cadunico.md",
+   "title": "Cadastro Único (CadÚnico) — porta de entrada para programas sociais",
+   "source": "https://www.gov.br/mds/pt-br/acoes-e-programas/cadastro-unico",
+   "category": "cidadania",
+   "updated_at": "2026-11-08",
+   "status": "rascunho",
+   "chunks": 5
+  },
+  {
+   "id": "carteira-de-trabalho-digital",
+   "file": "carteira-de-trabalho-digital.md",
+   "title": "Carteira de Trabalho Digital — contratos, vagas e primeiro emprego",
+   "source": "https://www.gov.br/trabalho-e-emprego/pt-br/servicos/trabalhador/carteira-de-trabalho",
+   "category": "trabalho",
+   "updated_at": "2026-11-08",
+   "status": "rascunho",
+   "chunks": 6
+  },
+  {
+   "id": "conta-gov-br",
+   "file": "conta-gov-br.md",
+   "title": "Conta gov.br — o que é e os níveis bronze, prata e ouro",
+   "source": "https://www.gov.br/governodigital/pt-br/identidade/conta-gov-br",
+   "category": "cidadania",
+   "updated_at": "2026-11-08",
+   "status": "rascunho",
+   "chunks": 6
+  },
+  {
+   "id": "cpf",
+   "file": "cpf.md",
+   "title": "CPF — consultar e regularizar",
+   "source": "https://www.gov.br/receitafederal/pt-br/assuntos/meu-cpf",
+   "category": "cidadania",
+   "updated_at": "2026-11-08",
+   "status": "rascunho",
+   "chunks": 6
+  },
+  {
+   "id": "e-titulo",
+   "file": "e-titulo.md",
+   "title": "e-Título — título de eleitor digital e voto aos 16 anos",
+   "source": "https://www.tse.jus.br/servicos-eleitorais/servicos/aplicativo-e-titulo",
+   "category": "cidadania",
+   "updated_at": "2026-11-08",
+   "status": "rascunho",
+   "chunks": 6
+  },
+  {
+   "id": "enem",
+   "file": "enem.md",
+   "title": "ENEM — inscrição, isenção e resultados",
+   "source": "https://www.gov.br/inep/pt-br/areas-de-atuacao/avaliacao-e-exames-educacionais/enem",
+   "category": "educacao",
+   "updated_at": "2026-11-08",
+   "status": "rascunho",
+   "chunks": 6
+  },
+  {
+   "id": "golpes-digitais",
+   "file": "golpes-digitais.md",
+   "title": "Golpes digitais — como reconhecer e o que fazer se cair",
+   "source": "https://cartilha.cert.br",
+   "category": "seguranca",
+   "updated_at": "2026-11-08",
+   "status": "rascunho",
+   "chunks": 7
+  },
+  {
+   "id": "meu-sus-digital",
+   "file": "meu-sus-digital.md",
+   "title": "Meu SUS Digital — vacinação e histórico de saúde",
+   "source": "https://meususdigital.saude.gov.br",
+   "category": "saude",
+   "updated_at": "2026-11-08",
+   "status": "rascunho",
+   "chunks": 6
+  },
+  {
+   "id": "pe-de-meia",
+   "file": "pe-de-meia.md",
+   "title": "Pé-de-Meia — quem recebe e onde consultar",
+   "source": "https://www.gov.br/mec/pt-br/pe-de-meia",
+   "category": "educacao",
+   "updated_at": "2026-11-08",
+   "status": "rascunho",
+   "chunks": 6
+  },
+  {
+   "id": "registrato-e-valores-a-receber",
+   "file": "registrato-e-valores-a-receber.md",
+   "title": "Registrato e Valores a Receber — contas no seu nome e dinheiro esquecido",
+   "source": "https://www.bcb.gov.br/meubc/registrato",
+   "category": "financas",
+   "updated_at": "2026-11-08",
+   "status": "rascunho",
+   "chunks": 6
+  },
+  {
+   "id": "sisu-prouni-fies",
+   "file": "sisu-prouni-fies.md",
+   "title": "Sisu, ProUni e Fies — como usar a nota do ENEM",
+   "source": "https://acessounico.mec.gov.br/sisu",
+   "category": "educacao",
+   "updated_at": "2026-11-08",
+   "status": "rascunho",
+   "chunks": 5
+  }
+ ],
+ "chunks": [
+  {
+   "id": "alistamento-militar#1",
+   "doc_id": "alistamento-militar",
+   "title": "Alistamento militar — quem precisa e quando",
+   "heading": "Para que serve",
+   "source": "https://alistamento.eb.mil.br",
+   "category": "cidadania",
+   "text": "O alistamento militar é o cadastro obrigatório nas Forças Armadas. Ele é feito pela internet. Depois\ndo alistamento, a pessoa pode ou não ser chamada para servir. O documento que comprova a situação\nmilitar é pedido, por exemplo, em concursos públicos e em alguns empregos."
+  },
+  {
+   "id": "alistamento-militar#2",
+   "doc_id": "alistamento-militar",
+   "title": "Alistamento militar — quem precisa e quando",
+   "heading": "Quem pode usar",
+   "source": "https://alistamento.eb.mil.br",
+   "category": "cidadania",
+   "text": "- **Homens:** o alistamento é obrigatório no ano em que completam 18 anos, dentro do prazo do\n  primeiro semestre. Quem perde o prazo precisa regularizar a situação.\n- **Mulheres:** podem se alistar de forma voluntária (não é obrigatório), conforme as regras e vagas\n  divulgadas pelas Forças Armadas."
+  },
+  {
+   "id": "alistamento-militar#3",
+   "doc_id": "alistamento-militar",
+   "title": "Alistamento militar — quem precisa e quando",
+   "heading": "Onde acessar",
+   "source": "https://alistamento.eb.mil.br",
+   "category": "cidadania",
+   "text": "Site oficial do alistamento: https://alistamento.eb.mil.br\nO endereço termina em .mil.br, que é reservado às Forças Armadas."
+  },
+  {
+   "id": "alistamento-militar#4",
+   "doc_id": "alistamento-militar",
+   "title": "Alistamento militar — quem precisa e quando",
+   "heading": "O que dá para fazer",
+   "source": "https://alistamento.eb.mil.br",
+   "category": "cidadania",
+   "text": "- Fazer o alistamento pela internet.\n- Acompanhar as próximas etapas e as datas em que você precisa comparecer.\n- Emitir os documentos da sua situação militar."
+  },
+  {
+   "id": "alistamento-militar#5",
+   "doc_id": "alistamento-militar",
+   "title": "Alistamento militar — quem precisa e quando",
+   "heading": "Cuidados",
+   "source": "https://alistamento.eb.mil.br",
+   "category": "cidadania",
+   "text": "- O alistamento é gratuito.\n- O site oficial termina em .mil.br. Desconfie de outros endereços.\n- Confira as datas do ano no próprio site oficial."
+  },
+  {
+   "id": "atendimento-presencial-manaus#1",
+   "doc_id": "atendimento-presencial-manaus",
+   "title": "Atendimento presencial em Manaus — PAC, CRAS e UBS",
+   "heading": "Atendimento presencial em Manaus",
+   "source": "https://www.manaus.am.gov.br",
+   "category": "geral",
+   "text": "Nem tudo dá para resolver pela internet. Quando o serviço digital não funciona, ou quando é preciso\nlevar documentos, estes são os lugares de atendimento presencial em Manaus."
+  },
+  {
+   "id": "atendimento-presencial-manaus#2",
+   "doc_id": "atendimento-presencial-manaus",
+   "title": "Atendimento presencial em Manaus — PAC, CRAS e UBS",
+   "heading": "PAC — Pronto Atendimento ao Cidadão",
+   "source": "https://www.manaus.am.gov.br",
+   "category": "geral",
+   "text": "O PAC é uma rede de postos do Governo do Amazonas que junta vários serviços públicos num lugar só,\ncomo a emissão de documentos. Há unidades em vários bairros de Manaus. Antes de ir, confira no site\noficial do Governo do Amazonas quais serviços a unidade oferece, o horário e se é preciso agendar."
+  },
+  {
+   "id": "atendimento-presencial-manaus#3",
+   "doc_id": "atendimento-presencial-manaus",
+   "title": "Atendimento presencial em Manaus — PAC, CRAS e UBS",
+   "heading": "CRAS — Centro de Referência de Assistência Social",
+   "source": "https://www.manaus.am.gov.br",
+   "category": "geral",
+   "text": "O CRAS é o lugar da assistência social, mantido pela Prefeitura. É no CRAS que a família faz ou\natualiza o Cadastro Único (CadÚnico), que dá acesso a programas como o Bolsa Família e o Pé-de-Meia.\nO CRAS também orienta sobre outros benefícios sociais. Procure o CRAS mais perto da sua casa no site\nda Prefeitura de Manaus."
+  },
+  {
+   "id": "atendimento-presencial-manaus#4",
+   "doc_id": "atendimento-presencial-manaus",
+   "title": "Atendimento presencial em Manaus — PAC, CRAS e UBS",
+   "heading": "UBS — Unidade Básica de Saúde",
+   "source": "https://www.manaus.am.gov.br",
+   "category": "geral",
+   "text": "A UBS, também chamada de posto de saúde, é a porta de entrada do SUS. Lá você toma vacinas, marca\nconsultas, faz o Cartão Nacional de Saúde (cartão do SUS) e pode pedir para atualizar o registro de\nvacinas que não aparece no Meu SUS Digital. O atendimento é gratuito."
+  },
+  {
+   "id": "atendimento-presencial-manaus#5",
+   "doc_id": "atendimento-presencial-manaus",
+   "title": "Atendimento presencial em Manaus — PAC, CRAS e UBS",
+   "heading": "Cuidados",
+   "source": "https://www.manaus.am.gov.br",
+   "category": "geral",
+   "text": "- O atendimento nesses lugares é gratuito. Ninguém pode cobrar para agendar ou para \"furar a fila\".\n- Confira endereços e horários só nos sites oficiais (que terminam em .gov.br) ou pelos telefones\n  oficiais.\n- Leve os documentos pedidos pelo serviço. Na dúvida, leve documento com foto e CPF."
+  },
+  {
+   "id": "cadunico#1",
+   "doc_id": "cadunico",
+   "title": "Cadastro Único (CadÚnico) — porta de entrada para programas sociais",
+   "heading": "Para que serve",
+   "source": "https://www.gov.br/mds/pt-br/acoes-e-programas/cadastro-unico",
+   "category": "cidadania",
+   "text": "O Cadastro Único é um cadastro do governo federal com as informações das famílias de baixa renda.\nEle é a porta de entrada para vários programas sociais, como o Bolsa Família, o Pé-de-Meia e a\nTarifa Social de Energia Elétrica (desconto na conta de luz)."
+  },
+  {
+   "id": "cadunico#2",
+   "doc_id": "cadunico",
+   "title": "Cadastro Único (CadÚnico) — porta de entrada para programas sociais",
+   "heading": "Quem pode usar",
+   "source": "https://www.gov.br/mds/pt-br/acoes-e-programas/cadastro-unico",
+   "category": "cidadania",
+   "text": "Famílias de baixa renda, conforme o limite de renda por pessoa definido pelo governo. Quem responde\npela família no cadastro é o \"responsável familiar\", que precisa ter pelo menos 16 anos."
+  },
+  {
+   "id": "cadunico#3",
+   "doc_id": "cadunico",
+   "title": "Cadastro Único (CadÚnico) — porta de entrada para programas sociais",
+   "heading": "Onde acessar",
+   "source": "https://www.gov.br/mds/pt-br/acoes-e-programas/cadastro-unico",
+   "category": "cidadania",
+   "text": "- **Para entrar no cadastro ou atualizar:** é preciso ir pessoalmente ao CRAS (Centro de Referência\n  de Assistência Social) ou ao posto do Cadastro Único da sua cidade, levando os documentos das\n  pessoas da família.\n- **Para consultar:** aplicativo Meu CadÚnico, baixado só pela loja oficial do celular, ou o site do\n  Ministério do Desenvolvimento e Assistência Social, Família e Combate à Fome (MDS):\n  https://www.gov.br/mds/pt-br/acoes-e-programas/cadastro-unico"
+  },
+  {
+   "id": "cadunico#4",
+   "doc_id": "cadunico",
+   "title": "Cadastro Único (CadÚnico) — porta de entrada para programas sociais",
+   "heading": "O que dá para fazer",
+   "source": "https://www.gov.br/mds/pt-br/acoes-e-programas/cadastro-unico",
+   "category": "cidadania",
+   "text": "- Consultar se a família está cadastrada e se o cadastro está atualizado.\n- Emitir o comprovante de cadastro.\n- Ver quando é preciso atualizar os dados."
+  },
+  {
+   "id": "cadunico#5",
+   "doc_id": "cadunico",
+   "title": "Cadastro Único (CadÚnico) — porta de entrada para programas sociais",
+   "heading": "Cuidados",
+   "source": "https://www.gov.br/mds/pt-br/acoes-e-programas/cadastro-unico",
+   "category": "cidadania",
+   "text": "- Entrar no CadÚnico é gratuito. Ninguém precisa pagar para ser cadastrado.\n- Estar no CadÚnico não garante sozinho o recebimento de um programa: cada programa tem suas regras.\n- Mantenha o cadastro atualizado. Mudou de endereço, de renda ou alguém entrou ou saiu da família?\n  Avise o CRAS. Cadastro desatualizado pode fazer a família perder benefícios, como o Pé-de-Meia.\n- Desconfie de mensagens com links para \"atualizar o CadÚnico\"."
+  },
+  {
+   "id": "carteira-de-trabalho-digital#1",
+   "doc_id": "carteira-de-trabalho-digital",
+   "title": "Carteira de Trabalho Digital — contratos, vagas e primeiro emprego",
+   "heading": "Para que serve",
+   "source": "https://www.gov.br/trabalho-e-emprego/pt-br/servicos/trabalhador/carteira-de-trabalho",
+   "category": "trabalho",
+   "text": "A Carteira de Trabalho Digital substitui a carteira de papel. Ela mostra os seus empregos com\ncarteira assinada, os salários e as férias. No mesmo aplicativo também dá para procurar vagas de\nemprego do Sine, o serviço público de emprego."
+  },
+  {
+   "id": "carteira-de-trabalho-digital#2",
+   "doc_id": "carteira-de-trabalho-digital",
+   "title": "Carteira de Trabalho Digital — contratos, vagas e primeiro emprego",
+   "heading": "Quem pode usar",
+   "source": "https://www.gov.br/trabalho-e-emprego/pt-br/servicos/trabalhador/carteira-de-trabalho",
+   "category": "trabalho",
+   "text": "Qualquer pessoa com CPF: quem já trabalha e quem está procurando o primeiro emprego. Para o primeiro\nemprego, não é preciso tirar a carteira de papel: a digital já vale, e o número dela é o seu CPF."
+  },
+  {
+   "id": "carteira-de-trabalho-digital#3",
+   "doc_id": "carteira-de-trabalho-digital",
+   "title": "Carteira de Trabalho Digital — contratos, vagas e primeiro emprego",
+   "heading": "Onde acessar",
+   "source": "https://www.gov.br/trabalho-e-emprego/pt-br/servicos/trabalhador/carteira-de-trabalho",
+   "category": "trabalho",
+   "text": "- Aplicativo Carteira de Trabalho Digital, baixado só pela loja oficial do celular.\n- Pelo site do Ministério do Trabalho e Emprego (endereço que termina em .gov.br).\n- O login é feito com a conta gov.br."
+  },
+  {
+   "id": "carteira-de-trabalho-digital#4",
+   "doc_id": "carteira-de-trabalho-digital",
+   "title": "Carteira de Trabalho Digital — contratos, vagas e primeiro emprego",
+   "heading": "O que dá para fazer",
+   "source": "https://www.gov.br/trabalho-e-emprego/pt-br/servicos/trabalhador/carteira-de-trabalho",
+   "category": "trabalho",
+   "text": "- Ver seus contratos de trabalho, salários e férias.\n- Procurar vagas de emprego, inclusive de primeiro emprego e de jovem aprendiz.\n- Conferir se a empresa registrou você direitinho.\n- Acompanhar pedidos de seguro-desemprego e consultar o abono salarial, quando tiver direito."
+  },
+  {
+   "id": "carteira-de-trabalho-digital#5",
+   "doc_id": "carteira-de-trabalho-digital",
+   "title": "Carteira de Trabalho Digital — contratos, vagas e primeiro emprego",
+   "heading": "Jovem aprendiz",
+   "source": "https://www.gov.br/trabalho-e-emprego/pt-br/servicos/trabalhador/carteira-de-trabalho",
+   "category": "trabalho",
+   "text": "Jovem aprendiz é um contrato especial que junta trabalho e curso de formação, pensado para quem está\ncomeçando. As regras de idade e de carga horária estão na lei e no site do Ministério do Trabalho."
+  },
+  {
+   "id": "carteira-de-trabalho-digital#6",
+   "doc_id": "carteira-de-trabalho-digital",
+   "title": "Carteira de Trabalho Digital — contratos, vagas e primeiro emprego",
+   "heading": "Cuidados",
+   "source": "https://www.gov.br/trabalho-e-emprego/pt-br/servicos/trabalhador/carteira-de-trabalho",
+   "category": "trabalho",
+   "text": "- Vaga de emprego que cobra taxa, curso, exame ou uniforme para contratar é golpe.\n- Desconfie de \"trabalho fácil\" que promete ganhar muito por dia curtindo vídeos ou avaliando produtos.\n- Não mande foto de documento para recrutador que você não conhece.\n- O aplicativo oficial é gratuito."
+  },
+  {
+   "id": "conta-gov-br#1",
+   "doc_id": "conta-gov-br",
+   "title": "Conta gov.br — o que é e os níveis bronze, prata e ouro",
+   "heading": "Para que serve",
+   "source": "https://www.gov.br/governodigital/pt-br/identidade/conta-gov-br",
+   "category": "cidadania",
+   "text": "A conta gov.br é como uma chave única para entrar em milhares de serviços do governo pela internet.\nCom ela você usa o mesmo login (seu CPF e uma senha) no ENEM, na Carteira de Trabalho Digital, no\nMeu SUS Digital, no Registrato e em muitos outros serviços. Também é chamada de \"login do governo\"\nou \"senha do gov.br\"."
+  },
+  {
+   "id": "conta-gov-br#2",
+   "doc_id": "conta-gov-br",
+   "title": "Conta gov.br — o que é e os níveis bronze, prata e ouro",
+   "heading": "Quem pode usar",
+   "source": "https://www.gov.br/governodigital/pt-br/identidade/conta-gov-br",
+   "category": "cidadania",
+   "text": "Qualquer pessoa que tenha CPF, inclusive menores de idade. É gratuita."
+  },
+  {
+   "id": "conta-gov-br#3",
+   "doc_id": "conta-gov-br",
+   "title": "Conta gov.br — o que é e os níveis bronze, prata e ouro",
+   "heading": "Onde acessar",
+   "source": "https://www.gov.br/governodigital/pt-br/identidade/conta-gov-br",
+   "category": "cidadania",
+   "text": "Pelo site www.gov.br (botão \"Entrar com gov.br\") ou pelo aplicativo gov.br, baixado só pela loja\noficial do celular (Play Store ou App Store)."
+  },
+  {
+   "id": "conta-gov-br#4",
+   "doc_id": "conta-gov-br",
+   "title": "Conta gov.br — o que é e os níveis bronze, prata e ouro",
+   "heading": "Os níveis da conta: bronze, prata e ouro",
+   "source": "https://www.gov.br/governodigital/pt-br/identidade/conta-gov-br",
+   "category": "cidadania",
+   "text": "A conta tem três níveis. Quanto mais alto o nível, mais confiável é a sua identificação e mais\nserviços você consegue usar.\n\n- **Bronze:** o nível de quem acabou de criar a conta. Já dá para usar alguns serviços.\n- **Prata:** nível intermediário. É pedido em serviços com dados mais sensíveis, como o Registrato.\n- **Ouro:** o nível mais seguro. Libera praticamente todos os serviços.\n\nPara subir de nível, o aplicativo gov.br oferece opções como o reconhecimento facial (foto do rosto\nfeita no próprio aplicativo) e a validação pelo aplicativo de um banco. As opções aparecem no\naplicativo, na parte de \"Nível da conta\"."
+  },
+  {
+   "id": "conta-gov-br#5",
+   "doc_id": "conta-gov-br",
+   "title": "Conta gov.br — o que é e os níveis bronze, prata e ouro",
+   "heading": "O que dá para fazer",
+   "source": "https://www.gov.br/governodigital/pt-br/identidade/conta-gov-br",
+   "category": "cidadania",
+   "text": "- Entrar em serviços do governo federal com um só login.\n- Ver e aumentar o nível da sua conta.\n- Ativar a verificação em duas etapas, que pede um código extra além da senha.\n- Ver quais serviços acessaram seus dados e autorizar ou não esses acessos."
+  },
+  {
+   "id": "conta-gov-br#6",
+   "doc_id": "conta-gov-br",
+   "title": "Conta gov.br — o que é e os níveis bronze, prata e ouro",
+   "heading": "Cuidados",
+   "source": "https://www.gov.br/governodigital/pt-br/identidade/conta-gov-br",
+   "category": "cidadania",
+   "text": "- O gov.br nunca pede sua senha por SMS, e-mail, ligação ou WhatsApp.\n- Ninguém precisa pagar para criar a conta ou para subir de nível. Quem cobra é golpista.\n- Ative a verificação em duas etapas: assim, mesmo que alguém descubra sua senha, não consegue entrar.\n- Não empreste sua conta e não passe o código de verificação para ninguém.\n- O endereço oficial termina em .gov.br. Desconfie de sites parecidos."
+  },
+  {
+   "id": "cpf#1",
+   "doc_id": "cpf",
+   "title": "CPF — consultar e regularizar",
+   "heading": "Para que serve",
+   "source": "https://www.gov.br/receitafederal/pt-br/assuntos/meu-cpf",
+   "category": "cidadania",
+   "text": "O CPF (Cadastro de Pessoas Físicas) é o número que identifica você na Receita Federal. Ele é pedido\nem quase tudo: matrícula, emprego, conta em banco, ENEM, conta gov.br e programas como o Pé-de-Meia.\nHoje o número do CPF também aparece na carteira de identidade nova."
+  },
+  {
+   "id": "cpf#2",
+   "doc_id": "cpf",
+   "title": "CPF — consultar e regularizar",
+   "heading": "Quem pode usar",
+   "source": "https://www.gov.br/receitafederal/pt-br/assuntos/meu-cpf",
+   "category": "cidadania",
+   "text": "Qualquer pessoa, de qualquer idade. Menores de idade também podem e devem ter CPF."
+  },
+  {
+   "id": "cpf#3",
+   "doc_id": "cpf",
+   "title": "CPF — consultar e regularizar",
+   "heading": "Onde acessar",
+   "source": "https://www.gov.br/receitafederal/pt-br/assuntos/meu-cpf",
+   "category": "cidadania",
+   "text": "No site da Receita Federal: https://www.gov.br/receitafederal/pt-br/assuntos/meu-cpf\nOs serviços do CPF pela internet são gratuitos."
+  },
+  {
+   "id": "cpf#4",
+   "doc_id": "cpf",
+   "title": "CPF — consultar e regularizar",
+   "heading": "O que dá para fazer",
+   "source": "https://www.gov.br/receitafederal/pt-br/assuntos/meu-cpf",
+   "category": "cidadania",
+   "text": "- Pedir o CPF pela primeira vez.\n- Consultar a situação do CPF.\n- Atualizar dados, como endereço ou nome.\n- Regularizar o CPF quando ele tiver alguma pendência."
+  },
+  {
+   "id": "cpf#5",
+   "doc_id": "cpf",
+   "title": "CPF — consultar e regularizar",
+   "heading": "Situações do CPF",
+   "source": "https://www.gov.br/receitafederal/pt-br/assuntos/meu-cpf",
+   "category": "cidadania",
+   "text": "- **Regular:** está tudo certo.\n- **Suspensa:** algum dado está errado ou incompleto. Dá para corrigir atualizando os dados.\n- **Pendente de regularização:** a pessoa deixou de entregar alguma declaração obrigatória.\n- **Cancelada** ou **nula:** casos mais raros, que precisam de atendimento da Receita.\n\nSe a situação não estiver \"regular\", confira no site da Receita o que fazer."
+  },
+  {
+   "id": "cpf#6",
+   "doc_id": "cpf",
+   "title": "CPF — consultar e regularizar",
+   "heading": "Cuidados",
+   "source": "https://www.gov.br/receitafederal/pt-br/assuntos/meu-cpf",
+   "category": "cidadania",
+   "text": "- A Receita Federal não manda mensagem dizendo que seu CPF \"será cancelado\" com um link para\n  regularizar. Isso é golpe.\n- Não passe o seu CPF para quem você não conhece, principalmente junto com foto de documento.\n- Os serviços do CPF no site da Receita são gratuitos.\n- Para saber se alguém está usando o seu CPF para abrir contas, use o Registrato do Banco Central."
+  },
+  {
+   "id": "e-titulo#1",
+   "doc_id": "e-titulo",
+   "title": "e-Título — título de eleitor digital e voto aos 16 anos",
+   "heading": "Para que serve",
+   "source": "https://www.tse.jus.br/servicos-eleitorais/servicos/aplicativo-e-titulo",
+   "category": "cidadania",
+   "text": "O e-Título é o aplicativo da Justiça Eleitoral. Ele é o título de eleitor digital: no dia da\neleição, ele pode ser usado no lugar do título de papel. Também mostra o seu local de votação e se o\nseu título está regular."
+  },
+  {
+   "id": "e-titulo#2",
+   "doc_id": "e-titulo",
+   "title": "e-Título — título de eleitor digital e voto aos 16 anos",
+   "heading": "Quem pode usar",
+   "source": "https://www.tse.jus.br/servicos-eleitorais/servicos/aplicativo-e-titulo",
+   "category": "cidadania",
+   "text": "- Com 16 e 17 anos, tirar o título e votar é opcional (facultativo).\n- Dos 18 aos 70 anos, votar é obrigatório.\n- Acima dos 70 anos, volta a ser opcional.\n\nPara usar o e-Título, você precisa já ter o título de eleitor."
+  },
+  {
+   "id": "e-titulo#3",
+   "doc_id": "e-titulo",
+   "title": "e-Título — título de eleitor digital e voto aos 16 anos",
+   "heading": "Onde acessar",
+   "source": "https://www.tse.jus.br/servicos-eleitorais/servicos/aplicativo-e-titulo",
+   "category": "cidadania",
+   "text": "- Aplicativo e-Título, baixado só pela loja oficial do celular.\n- Site do Tribunal Superior Eleitoral (TSE): https://www.tse.jus.br\n- Os sites da Justiça Eleitoral terminam em .jus.br."
+  },
+  {
+   "id": "e-titulo#4",
+   "doc_id": "e-titulo",
+   "title": "e-Título — título de eleitor digital e voto aos 16 anos",
+   "heading": "O que dá para fazer",
+   "source": "https://www.tse.jus.br/servicos-eleitorais/servicos/aplicativo-e-titulo",
+   "category": "cidadania",
+   "text": "- Mostrar o título de eleitor digital.\n- Ver o local de votação (zona e seção).\n- Consultar se o título está regular.\n- Justificar a ausência quando você não puder votar.\n- Emitir certidão de quitação eleitoral."
+  },
+  {
+   "id": "e-titulo#5",
+   "doc_id": "e-titulo",
+   "title": "e-Título — título de eleitor digital e voto aos 16 anos",
+   "heading": "Como tirar o primeiro título",
+   "source": "https://www.tse.jus.br/servicos-eleitorais/servicos/aplicativo-e-titulo",
+   "category": "cidadania",
+   "text": "O primeiro título pode ser pedido pelo serviço de autoatendimento no site do TSE. Em alguns casos é\npreciso ir ao cartório eleitoral, por exemplo para registrar a biometria (as digitais e a foto). O\ncadastro fecha alguns meses antes de cada eleição, então não deixe para a última hora."
+  },
+  {
+   "id": "e-titulo#6",
+   "doc_id": "e-titulo",
+   "title": "e-Título — título de eleitor digital e voto aos 16 anos",
+   "heading": "Cuidados",
+   "source": "https://www.tse.jus.br/servicos-eleitorais/servicos/aplicativo-e-titulo",
+   "category": "cidadania",
+   "text": "- Tirar o título e usar o e-Título é gratuito.\n- A Justiça Eleitoral usa endereços que terminam em .jus.br. Desconfie de outros.\n- Ninguém da Justiça Eleitoral pede senha, código ou Pix por mensagem."
+  },
+  {
+   "id": "enem#1",
+   "doc_id": "enem",
+   "title": "ENEM — inscrição, isenção e resultados",
+   "heading": "Para que serve",
+   "source": "https://www.gov.br/inep/pt-br/areas-de-atuacao/avaliacao-e-exames-educacionais/enem",
+   "category": "educacao",
+   "text": "O ENEM (Exame Nacional do Ensino Médio) é a prova feita pelo Inep, do Ministério da Educação. A\nnota do ENEM é usada para entrar na faculdade pelo Sisu, conseguir bolsa no ProUni e financiamento\nno Fies. Muitas faculdades particulares também aceitam a nota."
+  },
+  {
+   "id": "enem#2",
+   "doc_id": "enem",
+   "title": "ENEM — inscrição, isenção e resultados",
+   "heading": "Quem pode usar",
+   "source": "https://www.gov.br/inep/pt-br/areas-de-atuacao/avaliacao-e-exames-educacionais/enem",
+   "category": "educacao",
+   "text": "- Quem está terminando o Ensino Médio.\n- Quem já terminou o Ensino Médio.\n- Quem ainda não vai terminar o Ensino Médio no ano pode fazer como \"treineiro\", só para treinar.\n  A nota do treineiro não serve para entrar na faculdade."
+  },
+  {
+   "id": "enem#3",
+   "doc_id": "enem",
+   "title": "ENEM — inscrição, isenção e resultados",
+   "heading": "Onde acessar",
+   "source": "https://www.gov.br/inep/pt-br/areas-de-atuacao/avaliacao-e-exames-educacionais/enem",
+   "category": "educacao",
+   "text": "Tudo é feito na Página do Participante, no site oficial do Inep (endereço que termina em .gov.br).\nPara entrar, você usa a conta gov.br. Lá ficam a inscrição, o cartão de confirmação com o local de\nprova e o resultado."
+  },
+  {
+   "id": "enem#4",
+   "doc_id": "enem",
+   "title": "ENEM — inscrição, isenção e resultados",
+   "heading": "O que dá para fazer",
+   "source": "https://www.gov.br/inep/pt-br/areas-de-atuacao/avaliacao-e-exames-educacionais/enem",
+   "category": "educacao",
+   "text": "- Pedir a isenção da taxa de inscrição, no prazo do edital.\n- Fazer a inscrição.\n- Ver o local de prova no cartão de confirmação.\n- Consultar as notas e o espelho da redação depois do resultado."
+  },
+  {
+   "id": "enem#5",
+   "doc_id": "enem",
+   "title": "ENEM — inscrição, isenção e resultados",
+   "heading": "Isenção da taxa",
+   "source": "https://www.gov.br/inep/pt-br/areas-de-atuacao/avaliacao-e-exames-educacionais/enem",
+   "category": "educacao",
+   "text": "Algumas pessoas não pagam a taxa de inscrição. Por exemplo, quem está no último ano do Ensino Médio\nem escola pública e algumas pessoas de famílias de baixa renda. As regras exatas, os documentos e os\nprazos estão no edital do ano, publicado no site do Inep."
+  },
+  {
+   "id": "enem#6",
+   "doc_id": "enem",
+   "title": "ENEM — inscrição, isenção e resultados",
+   "heading": "Cuidados",
+   "source": "https://www.gov.br/inep/pt-br/areas-de-atuacao/avaliacao-e-exames-educacionais/enem",
+   "category": "educacao",
+   "text": "- A inscrição é feita só no site oficial do Inep. Desconfie de quem cobra para inscrever você.\n- O Inep não manda mensagem pedindo dados, senha ou Pix.\n- Confira as datas no edital do ano: elas mudam todo ano."
+  },
+  {
+   "id": "golpes-digitais#1",
+   "doc_id": "golpes-digitais",
+   "title": "Golpes digitais — como reconhecer e o que fazer se cair",
+   "heading": "Como os golpes funcionam",
+   "source": "https://cartilha.cert.br",
+   "category": "seguranca",
+   "text": "A maioria dos golpes não invade o celular. Eles convencem a pessoa a entregar uma senha, um código\nou dinheiro. Isso se chama engenharia social: enganar a pessoa em vez de enganar a máquina."
+  },
+  {
+   "id": "golpes-digitais#2",
+   "doc_id": "golpes-digitais",
+   "title": "Golpes digitais — como reconhecer e o que fazer se cair",
+   "heading": "Os 4 sinais de golpe",
+   "source": "https://cartilha.cert.br",
+   "category": "seguranca",
+   "text": "- **Urgência:** \"último dia\", \"sua conta será bloqueada\", \"responda agora\".\n- **Pedido de dado ou código:** senha, código que chegou por SMS, foto de documento.\n- **Pedido de dinheiro:** taxa, Pix ou depósito para \"liberar\" alguma coisa.\n- **Link estranho:** endereço que não é o oficial, link encurtado ou com erros de escrita."
+  },
+  {
+   "id": "golpes-digitais#3",
+   "doc_id": "golpes-digitais",
+   "title": "Golpes digitais — como reconhecer e o que fazer se cair",
+   "heading": "Golpes mais comuns",
+   "source": "https://cartilha.cert.br",
+   "category": "seguranca",
+   "text": "- **Falso gov.br ou falsa Receita:** \"Seu CPF será cancelado, regularize pelo link\".\n- **Falso dinheiro esquecido:** o Banco Central não manda links nem cobra taxa para devolver valores.\n- **WhatsApp clonado:** alguém pede o código de 6 dígitos que chegou por SMS.\n- **Parente com número novo** pedindo um Pix urgente.\n- **Renda fácil:** \"ganhe por dia curtindo vídeos\" ou vaga de emprego que cobra taxa.\n- **Falso benefício:** mensagem dizendo que você tem Pé-de-Meia, Bolsa Família ou outro benefício\n  para \"liberar\" mediante pagamento ou cadastro em link."
+  },
+  {
+   "id": "golpes-digitais#4",
+   "doc_id": "golpes-digitais",
+   "title": "Golpes digitais — como reconhecer e o que fazer se cair",
+   "heading": "Como conferir um link",
+   "source": "https://cartilha.cert.br",
+   "category": "seguranca",
+   "text": "Sites do governo federal terminam em .gov.br. A Justiça usa .jus.br e as Forças Armadas usam .mil.br.\nNo site do Guia do Cidadão Digital, a aba \"Esse link é oficial?\" ajuda a conferir um link ou um SMS\nsuspeito sem abrir o link. O mais seguro é sempre digitar o endereço oficial você mesmo."
+  },
+  {
+   "id": "golpes-digitais#5",
+   "doc_id": "golpes-digitais",
+   "title": "Golpes digitais — como reconhecer e o que fazer se cair",
+   "heading": "Proteja suas contas",
+   "source": "https://cartilha.cert.br",
+   "category": "seguranca",
+   "text": "- Use senhas longas, como uma frase que só você conhece.\n- Não repita a mesma senha em vários sites.\n- Ative a verificação em duas etapas no WhatsApp, na conta gov.br e nas redes sociais.\n- Instale aplicativos só pela loja oficial do celular.\n- Mantenha o celular atualizado e com bloqueio de tela."
+  },
+  {
+   "id": "golpes-digitais#6",
+   "doc_id": "golpes-digitais",
+   "title": "Golpes digitais — como reconhecer e o que fazer se cair",
+   "heading": "Caiu em um golpe? Aja rápido",
+   "source": "https://cartilha.cert.br",
+   "category": "seguranca",
+   "text": "- Avise o banco na hora, pelo aplicativo ou pelo telefone oficial. Em golpe com Pix, peça o MED\n  (Mecanismo Especial de Devolução).\n- Troque as senhas das contas afetadas.\n- Avise seus contatos se sua conta foi clonada.\n- Registre um boletim de ocorrência. Dá para fazer pela delegacia virtual da Polícia Civil.\n- Guarde prints e comprovantes."
+  },
+  {
+   "id": "golpes-digitais#7",
+   "doc_id": "golpes-digitais",
+   "title": "Golpes digitais — como reconhecer e o que fazer se cair",
+   "heading": "Regra de ouro",
+   "source": "https://cartilha.cert.br",
+   "category": "seguranca",
+   "text": "Parou, desconfiou, confirmou por outro caminho. Nunca confirme pelo link ou pelo número que veio na\nprópria mensagem. A Cartilha de Segurança para Internet do CERT.br (https://cartilha.cert.br) tem\nmais dicas."
+  },
+  {
+   "id": "meu-sus-digital#1",
+   "doc_id": "meu-sus-digital",
+   "title": "Meu SUS Digital — vacinação e histórico de saúde",
+   "heading": "Para que serve",
+   "source": "https://meususdigital.saude.gov.br",
+   "category": "saude",
+   "text": "O Meu SUS Digital é o aplicativo do Ministério da Saúde. Ele junta as suas informações de saúde\ndo SUS num lugar só: a carteira de vacinação digital, as consultas, os exames e os remédios que você\nrecebeu. Antes ele se chamava Conecte SUS."
+  },
+  {
+   "id": "meu-sus-digital#2",
+   "doc_id": "meu-sus-digital",
+   "title": "Meu SUS Digital — vacinação e histórico de saúde",
+   "heading": "Quem pode usar",
+   "source": "https://meususdigital.saude.gov.br",
+   "category": "saude",
+   "text": "Qualquer pessoa atendida pelo SUS, de qualquer idade. É gratuito."
+  },
+  {
+   "id": "meu-sus-digital#3",
+   "doc_id": "meu-sus-digital",
+   "title": "Meu SUS Digital — vacinação e histórico de saúde",
+   "heading": "Onde acessar",
+   "source": "https://meususdigital.saude.gov.br",
+   "category": "saude",
+   "text": "- Aplicativo Meu SUS Digital, baixado só pela loja oficial do celular.\n- Site: https://meususdigital.saude.gov.br\n- O login é feito com a conta gov.br."
+  },
+  {
+   "id": "meu-sus-digital#4",
+   "doc_id": "meu-sus-digital",
+   "title": "Meu SUS Digital — vacinação e histórico de saúde",
+   "heading": "O que dá para fazer",
+   "source": "https://meususdigital.saude.gov.br",
+   "category": "saude",
+   "text": "- Ver a carteira de vacinação e saber se você tomou todas as vacinas.\n- Baixar o certificado de vacinação.\n- Ver o número do seu Cartão Nacional de Saúde (o \"cartão do SUS\").\n- Ver o histórico de atendimentos, exames e medicamentos."
+  },
+  {
+   "id": "meu-sus-digital#5",
+   "doc_id": "meu-sus-digital",
+   "title": "Meu SUS Digital — vacinação e histórico de saúde",
+   "heading": "Se uma vacina não aparece",
+   "source": "https://meususdigital.saude.gov.br",
+   "category": "saude",
+   "text": "Às vezes a vacina foi aplicada mas não foi registrada no sistema. Nesse caso, leve a carteira de\nvacinação de papel à unidade de saúde (UBS) mais perto de casa e peça para atualizar o registro."
+  },
+  {
+   "id": "meu-sus-digital#6",
+   "doc_id": "meu-sus-digital",
+   "title": "Meu SUS Digital — vacinação e histórico de saúde",
+   "heading": "Cuidados",
+   "source": "https://meususdigital.saude.gov.br",
+   "category": "saude",
+   "text": "- O SUS é gratuito. Mensagem que cobra para marcar consulta, liberar exame ou \"atualizar o cartão do\n  SUS\" é golpe.\n- O Ministério da Saúde não pede senha, código ou Pix por mensagem.\n- Baixe o aplicativo só pela loja oficial do celular."
+  },
+  {
+   "id": "pe-de-meia#1",
+   "doc_id": "pe-de-meia",
+   "title": "Pé-de-Meia — quem recebe e onde consultar",
+   "heading": "Para que serve",
+   "source": "https://www.gov.br/mec/pt-br/pe-de-meia",
+   "category": "educacao",
+   "text": "O Pé-de-Meia é um incentivo em dinheiro do Ministério da Educação (MEC) para estudantes do Ensino\nMédio da escola pública continuarem estudando e concluírem os estudos. É como uma \"poupança\" para\nquem fica na escola."
+  },
+  {
+   "id": "pe-de-meia#2",
+   "doc_id": "pe-de-meia",
+   "title": "Pé-de-Meia — quem recebe e onde consultar",
+   "heading": "Quem pode usar",
+   "source": "https://www.gov.br/mec/pt-br/pe-de-meia",
+   "category": "educacao",
+   "text": "Estudantes do Ensino Médio da rede pública que fazem parte de famílias inscritas no Cadastro Único\n(CadÚnico) e que atendem às regras de renda e idade do programa. Não é preciso se inscrever no\nPé-de-Meia: quem tem direito é incluído automaticamente, a partir dos dados da escola e do CadÚnico."
+  },
+  {
+   "id": "pe-de-meia#3",
+   "doc_id": "pe-de-meia",
+   "title": "Pé-de-Meia — quem recebe e onde consultar",
+   "heading": "Onde acessar",
+   "source": "https://www.gov.br/mec/pt-br/pe-de-meia",
+   "category": "educacao",
+   "text": "- Informações oficiais: site do MEC, em https://www.gov.br/mec/pt-br/pe-de-meia\n- Consulta de quem tem direito e dos pagamentos: aplicativo Jornada do Estudante.\n- O dinheiro cai numa conta da Caixa aberta no nome do estudante, que é usada pelo aplicativo\n  Caixa Tem."
+  },
+  {
+   "id": "pe-de-meia#4",
+   "doc_id": "pe-de-meia",
+   "title": "Pé-de-Meia — quem recebe e onde consultar",
+   "heading": "O que dá para fazer",
+   "source": "https://www.gov.br/mec/pt-br/pe-de-meia",
+   "category": "educacao",
+   "text": "- Ver se você está no programa.\n- Acompanhar as parcelas. Elas dependem de estar matriculado, ter frequência nas aulas, ser\n  aprovado no fim do ano e participar do ENEM, conforme as regras do programa.\n- Movimentar o dinheiro pelo Caixa Tem."
+  },
+  {
+   "id": "pe-de-meia#5",
+   "doc_id": "pe-de-meia",
+   "title": "Pé-de-Meia — quem recebe e onde consultar",
+   "heading": "Se você acha que tem direito e não aparece no programa",
+   "source": "https://www.gov.br/mec/pt-br/pe-de-meia",
+   "category": "educacao",
+   "text": "- Confira com a secretaria da escola se seus dados estão certos e se a frequência está registrada.\n- Confira se a família está no CadÚnico e se o cadastro está atualizado. Isso é feito no CRAS."
+  },
+  {
+   "id": "pe-de-meia#6",
+   "doc_id": "pe-de-meia",
+   "title": "Pé-de-Meia — quem recebe e onde consultar",
+   "heading": "Cuidados",
+   "source": "https://www.gov.br/mec/pt-br/pe-de-meia",
+   "category": "educacao",
+   "text": "- O MEC não cobra taxa para liberar o Pé-de-Meia.\n- O MEC não pede dados, senha ou código por WhatsApp, SMS ou ligação.\n- Não existe \"cadastro\" do Pé-de-Meia em site ou link de mensagem: quem tem direito entra\n  automaticamente."
+  },
+  {
+   "id": "registrato-e-valores-a-receber#1",
+   "doc_id": "registrato-e-valores-a-receber",
+   "title": "Registrato e Valores a Receber — contas no seu nome e dinheiro esquecido",
+   "heading": "Para que serve",
+   "source": "https://www.bcb.gov.br/meubc/registrato",
+   "category": "financas",
+   "text": "São dois serviços gratuitos do Banco Central do Brasil.\n\n- **Registrato:** mostra as contas em banco, os empréstimos e as chaves Pix que existem no seu nome\n  (no seu CPF). Ajuda a descobrir se alguém abriu conta ou fez empréstimo usando o seu CPF.\n- **Valores a Receber:** mostra se existe dinheiro esquecido em bancos no seu nome ou no nome de um\n  familiar que já faleceu, e como pedir a devolução."
+  },
+  {
+   "id": "registrato-e-valores-a-receber#2",
+   "doc_id": "registrato-e-valores-a-receber",
+   "title": "Registrato e Valores a Receber — contas no seu nome e dinheiro esquecido",
+   "heading": "Quem pode usar",
+   "source": "https://www.bcb.gov.br/meubc/registrato",
+   "category": "financas",
+   "text": "Qualquer pessoa com CPF e conta gov.br. O Registrato pede a conta gov.br no nível prata ou ouro."
+  },
+  {
+   "id": "registrato-e-valores-a-receber#3",
+   "doc_id": "registrato-e-valores-a-receber",
+   "title": "Registrato e Valores a Receber — contas no seu nome e dinheiro esquecido",
+   "heading": "Onde acessar",
+   "source": "https://www.bcb.gov.br/meubc/registrato",
+   "category": "financas",
+   "text": "- Registrato: https://www.bcb.gov.br/meubc/registrato\n- Valores a Receber: https://valoresareceber.bcb.gov.br (é o ÚNICO site do serviço)"
+  },
+  {
+   "id": "registrato-e-valores-a-receber#4",
+   "doc_id": "registrato-e-valores-a-receber",
+   "title": "Registrato e Valores a Receber — contas no seu nome e dinheiro esquecido",
+   "heading": "O que dá para fazer",
+   "source": "https://www.bcb.gov.br/meubc/registrato",
+   "category": "financas",
+   "text": "- Ver em quais bancos você tem conta ou relacionamento.\n- Ver empréstimos e financiamentos no seu nome.\n- Ver as chaves Pix ligadas ao seu CPF.\n- Consultar valores esquecidos e pedir a devolução pelo Pix."
+  },
+  {
+   "id": "registrato-e-valores-a-receber#5",
+   "doc_id": "registrato-e-valores-a-receber",
+   "title": "Registrato e Valores a Receber — contas no seu nome e dinheiro esquecido",
+   "heading": "Se aparecer uma conta ou empréstimo que você não fez",
+   "source": "https://www.bcb.gov.br/meubc/registrato",
+   "category": "financas",
+   "text": "Pode ser que alguém usou o seu CPF. Procure o banco que aparece no relatório, pelos canais oficiais\ndo banco, e registre um boletim de ocorrência."
+  },
+  {
+   "id": "registrato-e-valores-a-receber#6",
+   "doc_id": "registrato-e-valores-a-receber",
+   "title": "Registrato e Valores a Receber — contas no seu nome e dinheiro esquecido",
+   "heading": "Cuidados",
+   "source": "https://www.bcb.gov.br/meubc/registrato",
+   "category": "financas",
+   "text": "- O Banco Central não liga, não manda SMS e não manda link pedindo seus dados.\n- Ninguém cobra taxa para devolver valores esquecidos. Quem cobra é golpista.\n- O único endereço do Valores a Receber é valoresareceber.bcb.gov.br.\n- Os dois serviços são gratuitos."
+  },
+  {
+   "id": "sisu-prouni-fies#1",
+   "doc_id": "sisu-prouni-fies",
+   "title": "Sisu, ProUni e Fies — como usar a nota do ENEM",
+   "heading": "Para que serve",
+   "source": "https://acessounico.mec.gov.br/sisu",
+   "category": "educacao",
+   "text": "São três programas do Ministério da Educação (MEC) que usam a nota do ENEM para entrar na\nfaculdade. Todos ficam no site Acesso Único do MEC (acessounico.mec.gov.br).\n\n- **Sisu:** vagas em universidades e institutos federais e estaduais públicos, que são gratuitos.\n- **ProUni:** bolsas de estudo integrais (100%) ou parciais (50%) em faculdades particulares.\n- **Fies:** financiamento estudantil, um empréstimo para pagar a faculdade particular."
+  },
+  {
+   "id": "sisu-prouni-fies#2",
+   "doc_id": "sisu-prouni-fies",
+   "title": "Sisu, ProUni e Fies — como usar a nota do ENEM",
+   "heading": "Quem pode usar",
+   "source": "https://acessounico.mec.gov.br/sisu",
+   "category": "educacao",
+   "text": "- Quem fez o ENEM. Cada programa diz qual edição do ENEM vale e se há nota mínima.\n- O ProUni e o Fies têm regras de renda da família. O ProUni também olha se você estudou o Ensino\n  Médio em escola pública ou como bolsista em escola particular.\n- As regras completas estão no edital de cada programa, no site do MEC."
+  },
+  {
+   "id": "sisu-prouni-fies#3",
+   "doc_id": "sisu-prouni-fies",
+   "title": "Sisu, ProUni e Fies — como usar a nota do ENEM",
+   "heading": "Onde acessar",
+   "source": "https://acessounico.mec.gov.br/sisu",
+   "category": "educacao",
+   "text": "- Sisu: https://acessounico.mec.gov.br/sisu\n- ProUni: https://acessounico.mec.gov.br/prouni\n- Fies: https://acessounico.mec.gov.br/fies\n\nA inscrição é feita com a conta gov.br."
+  },
+  {
+   "id": "sisu-prouni-fies#4",
+   "doc_id": "sisu-prouni-fies",
+   "title": "Sisu, ProUni e Fies — como usar a nota do ENEM",
+   "heading": "O que dá para fazer",
+   "source": "https://acessounico.mec.gov.br/sisu",
+   "category": "educacao",
+   "text": "- Escolher cursos e faculdades usando a nota do ENEM.\n- Acompanhar a nota de corte (no Sisu) durante as inscrições.\n- Ver se foi aprovado ou pré-selecionado.\n- Entrar na lista de espera."
+  },
+  {
+   "id": "sisu-prouni-fies#5",
+   "doc_id": "sisu-prouni-fies",
+   "title": "Sisu, ProUni e Fies — como usar a nota do ENEM",
+   "heading": "Cuidados",
+   "source": "https://acessounico.mec.gov.br/sisu",
+   "category": "educacao",
+   "text": "- As inscrições duram poucos dias e acontecem em épocas certas do ano. Fique de olho no calendário\n  do MEC.\n- A inscrição nos três programas é gratuita. Ninguém precisa pagar para garantir vaga ou bolsa.\n- O Fies é um empréstimo: o dinheiro precisa ser devolvido depois. Leia as condições antes de assinar.\n- Desconfie de sites e perfis que prometem \"vaga garantida\"."
+  }
+ ]
+}

@@ -1,0 +1,4 @@
+# Mantém as quebras de linha iguais no Windows, no Mac e no Linux.
+* text=auto eol=lf
+*.bat text eol=crlf
+*.ps1 text eol=crlf

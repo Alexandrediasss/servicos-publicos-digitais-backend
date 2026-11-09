@@ -1,0 +1,6 @@
+# Dependências da API (é isto que o Render instala).
+# Para desenvolver no computador, instale o requirements-dev.txt, que já inclui este arquivo.
+fastapi==0.162.2
+uvicorn[standard]==0.54.0
+httpx==0.28.1
+python-dotenv==1.2.4
