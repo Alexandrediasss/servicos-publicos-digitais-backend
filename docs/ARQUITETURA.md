@@ -3,10 +3,10 @@
 ## Visão geral
 
 ```
- Celular do aluno               Esta API (FastAPI)                       Ollama
+ Celular do aluno               Esta API (FastAPI)                       Groq (ou Ollama)
 ┌──────────────────┐ /api/chat ┌───────────────────────────────────┐   ┌────────────────┐
-│ Site (React)     │ ────────▶ │ 1. limite de uso (20/min por IP)  │   │ modelo Llama   │
-│ aba "Qual serviço│           │ 2. tamanho (32 KB) e validação    │   │ (llama3.1:8b)  │
+│ Site (React)     │ ────────▶ │ 1. limite de uso (20/min por IP)  │   │ IA open source │
+│ aba "Qual serviço│           │ 2. tamanho (32 KB) e validação    │   │ gpt-oss-20b    │
 │ eu preciso?"     │           │ 3. mascara CPF, cartão, e-mail    │──▶│                │
 │                  │ ◀──────── │ 4. RAG: busca 4 trechos (BM25)    │◀──│ /v1/chat/      │
 │ chatApi.js       │  SSE:     │ 5. monta o prompt                 │   │ completions    │
@@ -31,11 +31,11 @@
      como `token`;
    - `done` no fim, ou `error` se a IA falhar.
 8. Se a conexão cai ("Parar" ou página fechada), o Uvicorn cancela o gerador; o `async with` do httpx
-   fecha o pedido ao Ollama, que para de gerar. Testado: o Ollama registra "cancel task" na hora.
+   fecha o pedido à IA, que para de gerar. Testado com o Ollama: ele registra "cancel task" na hora.
 
 ## Por que essas escolhas
 
-- **Formato OpenAI** (`/chat/completions`): o Ollama aceita (em `/v1`), e quase todo provedor também.
+- **Formato OpenAI** (`/chat/completions`): a Groq e o Ollama (em `/v1`) aceitam, e quase todo provedor também.
   Trocar de modelo ou de máquina é só mudar `LLM_MODEL` e `LLM_BASE_URL`.
 - **Server-Sent Events:** um modelo rodando em computador comum pode levar de 10 a 60 segundos.
   Mostrar o texto aos poucos evita a impressão de que travou.
@@ -54,7 +54,7 @@
 | API (entrada) | Mascara de novo (`app/utils/privacy.py`) |
 | API (log) | Só erros técnicos (status, tipo do erro). Nunca o conteúdo. Log de acesso desligado |
 | API (memória) | O IP fica no máximo 1 minuto, só para o limite de uso |
-| Ollama | Recebe a conversa já mascarada. Rodando no computador da equipe, nada vai para terceiros |
+| Groq | Recebe a conversa já mascarada (é um serviço de terceiros). Com o Ollama no computador, nada sai da máquina |
 
 ## Pontos de extensão
 

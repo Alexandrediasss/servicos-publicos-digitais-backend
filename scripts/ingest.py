@@ -17,7 +17,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-from app.config import ConfigError, load_settings
+from app.config import CHUNK_OVERLAP, CHUNK_SIZE, DOCUMENTS_DIR, INDEX_FILE
 from app.rag.chunker import chunk_markdown
 from app.rag.frontmatter import parse_frontmatter
 from app.rag.store import INDEX_VERSION
@@ -39,8 +39,8 @@ def is_document(path: Path) -> bool:
 def build_index(
     documents_dir: Path,
     *,
-    chunk_size: int = 900,
-    chunk_overlap: int = 200,
+    chunk_size: int = CHUNK_SIZE,
+    chunk_overlap: int = CHUNK_OVERLAP,
     now: datetime | None = None,
 ) -> tuple[dict[str, Any], list[str]]:
     """Lê os documentos e monta o índice. Devolve (índice, avisos)."""
@@ -106,19 +106,10 @@ def build_index(
 
 
 def main() -> int:
-    try:
-        settings = load_settings()
-    except ConfigError as error:
-        print(error, file=sys.stderr)
-        return 1
-
-    index, warnings = build_index(
-        settings.documents_dir,
-        chunk_size=settings.chunk_size,
-        chunk_overlap=settings.chunk_overlap,
-    )
-    settings.index_file.parent.mkdir(parents=True, exist_ok=True)
-    settings.index_file.write_text(json.dumps(index, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+    # O ingest não depende da configuração da IA: roda mesmo sem .env ou sem chave.
+    index, warnings = build_index(DOCUMENTS_DIR)
+    INDEX_FILE.parent.mkdir(parents=True, exist_ok=True)
+    INDEX_FILE.write_text(json.dumps(index, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
 
     for warning in warnings:
         print(f"Aviso: {warning}")

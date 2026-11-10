@@ -19,14 +19,23 @@ from dotenv import load_dotenv
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 RAG_DIR = PROJECT_ROOT / "rag"
+DOCUMENTS_DIR = RAG_DIR / "documentos"
+INDEX_FILE = RAG_DIR / "indice" / "indice.json"
+# Tamanho dos trechos do RAG (em caracteres) e da repetição entre trechos (docs/RAG.md).
+CHUNK_SIZE = 900
+CHUNK_OVERLAP = 200
 
 # Endereço e modelo padrão de cada provedor de IA. Todos falam o formato da API da OpenAI
 # (/chat/completions), então trocar de provedor é só mudar variáveis de ambiente.
 LLM_DEFAULTS: dict[str, tuple[str, str]] = {
     "mock": ("", "demonstracao"),
     "ollama": ("http://localhost:11434/v1", "llama3.1:8b"),
+    "groq": ("https://api.groq.com/openai/v1", "openai/gpt-oss-20b"),
     "custom": ("", ""),
 }
+
+# Provedores que só funcionam com chave (LLM_API_KEY).
+PROVIDERS_NEEDING_KEY = {"groq"}
 
 
 class ConfigError(Exception):
@@ -59,8 +68,8 @@ class Settings:
     max_history_messages: int
     rate_limit_per_minute: int
     # Valores fixos do contrato da API (docs/CONTRATO-API.md). Não vêm do ambiente.
-    chunk_size: int = 900
-    chunk_overlap: int = 200
+    chunk_size: int = CHUNK_SIZE
+    chunk_overlap: int = CHUNK_OVERLAP
     max_messages: int = 40
     max_body_bytes: int = 32 * 1024
 
@@ -115,6 +124,8 @@ def load_settings(env: Mapping[str, str] | None = None) -> Settings:
             problems.append("LLM_BASE_URL está vazio.")
         if not llm.model:
             problems.append("LLM_MODEL está vazio.")
+    if provider in PROVIDERS_NEEDING_KEY and not llm.api_key:
+        problems.append(f"LLM_API_KEY é obrigatório para o provedor {provider} (crie a chave no site do provedor).")
 
     cors = tuple(
         origin.strip().rstrip("/")
@@ -127,8 +138,8 @@ def load_settings(env: Mapping[str, str] | None = None) -> Settings:
         cors_origins=cors,
         trust_proxy=_flag(env, "TRUST_PROXY"),
         llm=llm,
-        documents_dir=RAG_DIR / "documentos",
-        index_file=RAG_DIR / "indice" / "indice.json",
+        documents_dir=DOCUMENTS_DIR,
+        index_file=INDEX_FILE,
         top_k=int(_number(env, "RAG_TOP_K", 4, problems)),
         max_message_chars=int(_number(env, "MAX_MESSAGE_CHARS", 1000, problems)),
         max_history_messages=int(_number(env, "MAX_HISTORY_MESSAGES", 8, problems)),

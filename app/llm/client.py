@@ -138,8 +138,8 @@ async def mock_stream(messages: list[dict[str, str]], delay: float = 0.015) -> A
             "",
             found,
             "",
-            "Para respostas de verdade, ligue o Ollama e coloque `LLM_PROVIDER=ollama` no arquivo `.env` "
-            "da API (veja o README).",
+            "Para respostas de verdade, coloque `LLM_PROVIDER=groq` (com a chave) ou `LLM_PROVIDER=ollama` "
+            "no arquivo `.env` da API (veja o README).",
         ]
     )
     for piece in re.split(r"(\s+)", text):

@@ -14,10 +14,16 @@ Digitais"** (Sistemas de Informação, 5º período, 2026.2, Manaus-AM).
   Muitos só têm celular, às vezes simples e com internet limitada.
 - **O que o assistente faz:** a pessoa descreve a necessidade ("vou fazer o ENEM", "quero ver minhas
   vacinas") e ele indica **qual serviço público** resolve e **onde acessar** com segurança.
-- **Como:** modelo **Llama** (open source) rodando no **Ollama** + **RAG** (antes de responder, busca
+- **Como:** modelo de IA **open source** (`openai/gpt-oss-20b`) rodando na **Groq** (plano gratuito) + **RAG** (antes de responder, busca
   trechos numa base de documentos escritos pela equipe, sempre com fonte oficial).
 
 As outras duas abas do site (o Guia e o verificador de links) **não usam esta API**.
+
+O site é um dos materiais educativos de uma **apresentação expositiva de ~75 minutos em cinco eixos**
+(inclusão e letramento digital; governo digital e serviços públicos; cidadania digital e proteção de
+dados; segurança da informação, com a dinâmica "Golpe ou Real?"; desinformação e bem-estar digital).
+O assistente atende sobretudo o **Eixo 2** (qual serviço usar e onde) e reforça os Eixos 3 e 4 (não
+pedir dados, alertar golpes). Conceitos e vocabulário em [`docs/CONTEXTO.md`](docs/CONTEXTO.md).
 
 - Site (frontend, React, outro repositório): https://github.com/MariaLuiza007-Teo/servicos-publicos-digitais
 - Este repositório: só o backend, em Python. Ele substitui a API antiga em Node.js (`backend/` do
@@ -30,7 +36,7 @@ As outras duas abas do site (o Guia e o verificador de links) **não usam esta A
 | Linguagem | Python 3.12 |
 | Framework | FastAPI + Uvicorn |
 | Chamada à IA | httpx (assíncrono), formato OpenAI `/chat/completions` com `stream=true` |
-| IA | Ollama com `llama3.1:8b` (padrão). `mock` para testar sem IA |
+| IA | Groq (plano gratuito) com `openai/gpt-oss-20b` em produção (Llama só no Ollama, local). No computador: `mock`, `groq` ou `ollama` |
 | RAG | Markdown em `rag/documentos/` → `scripts/ingest.py` → `rag/indice/indice.json`; busca BM25 |
 | Configuração | Variáveis de ambiente (`.env` no computador, painel do Render em produção) |
 | Testes | pytest |
@@ -61,7 +67,7 @@ servicos-publicos-digitais-backend/
 │   ├── server.py                 # create_app(): CORS, rotas, erros
 │   ├── main.py, __main__.py      # Uvicorn (Render) / python -m app (computador)
 │   ├── routes/                   # health.py, chat.py
-│   ├── llm/client.py             # streaming do Ollama/OpenAI + modo mock
+│   ├── llm/client.py             # streaming no formato OpenAI (Groq/Ollama) + modo mock
 │   ├── prompts/system.py         # instruções da IA
 │   ├── rag/                      # frontmatter, chunker, keyword (BM25), store, retriever
 │   └── utils/                    # privacy, validation, rate_limit, sse
@@ -70,7 +76,7 @@ servicos-publicos-digitais-backend/
 │   ├── documentos/               # base de conhecimento (.md)
 │   └── indice/indice.json        # gerado pelo ingest (vai para o Git)
 ├── tests/                        # pytest
-└── docs/                         # contrato, arquitetura, RAG, Ollama, deploy
+└── docs/                         # contrato, arquitetura, RAG, IA, deploy
 ```
 
 ## Regras do projeto (não negociáveis)
@@ -91,8 +97,9 @@ servicos-publicos-digitais-backend/
 | --- | --- |
 | Backend novo em Python, em repositório separado | Escolha da equipe. O Node antigo fica como referência |
 | FastAPI | Suporta streaming (SSE) e chamadas assíncronas de forma simples |
-| Ollama como provedor de IA (sem Groq) | Gratuito e open source. Decidido pela equipe em 2026-11-08 |
-| Provedores `mock`, `ollama`, `custom` | `mock` para testar sem IA; `custom` como saída de emergência (qualquer API compatível com OpenAI) |
+| Groq (plano gratuito) como provedor de IA em produção | Gratuito, sem cartão e sempre no ar. O Ollama não cabe no plano gratuito do Render e exigiria um computador ligado o tempo todo. Decidido pela equipe em 2026-11-09 (Groq, com "q", não é o Grok do X) |
+| Modelo `openai/gpt-oss-20b` em vez de Llama (2026-11-09) | Testado com a chave da equipe: os Llama dão "model not found" no plano gratuito. O gpt-oss é open source (licença Apache 2.0), responde bem em português em ~1 s. Limites gratuitos medidos: 1.000 pedidos/dia e 8.000 tokens/min (cada pergunta gasta ~1.300 tokens, então ~6 perguntas por minuto no site todo) |
+| Provedores `mock`, `groq`, `ollama`, `custom` | `mock` para testar sem IA; `ollama` para rodar tudo no computador; `custom` como saída de emergência (qualquer API compatível com OpenAI) |
 | BM25 em vez de banco vetorial | A base é pequena (dezenas de documentos); funciona sem modelo extra |
 | Índice em JSON, versionado no Git | O Render não roda o ingest; a API recarrega o índice quando o arquivo muda |
 | Limite de uso em memória | Sem banco de dados; uma instância só no plano gratuito |
@@ -108,19 +115,21 @@ Atualizado em 2026-11-08.
 - [x] Projeto criado (FastAPI, configuração, `.env.example`, testes).
 - [x] `GET /api/health` no formato do contrato.
 - [x] `POST /api/chat`: validação, limite de uso, mascaramento, RAG, streaming SSE e "Parar" (a
-      conexão cai e o pedido ao Ollama é cancelado).
+      conexão cai e o pedido à IA é cancelado).
 - [x] Funciona com `LLM_PROVIDER=mock` e com `ollama` (testado no computador com um modelo local).
+- [x] Provedor `groq` configurado (testado só com provedor simulado; falta testar com uma chave de verdade).
 - [x] Testes com pytest passando (mascaramento, validação, chunker, BM25, prompt, cliente da IA, rotas).
 - [x] 13 documentos do RAG escritos como **rascunho** e índice gerado.
 - [x] Arquivos de contexto: `AGENTS.md`, `CLAUDE.md`, este guia, `README.md`, `docs/`.
 - [x] Testado junto com o site no computador (2026-11-08, com o modelo `qwen3:8b` que já estava
       instalado): resposta aos poucos, "Fontes consultadas", "Parar" e erro com o Ollama fora do ar.
-- [ ] Repetir o teste com o modelo oficial `llama3.1:8b`.
+- [ ] (Opcional) Testar com o Ollama local e `llama3.1:8b`.
 - [ ] **Revisar os 13 documentos do RAG na fonte oficial** (marcados com `CONFERIR`) e trocar para
       `status: revisado`. O `atendimento-presencial-manaus.md` precisa de pesquisa.
-- [ ] Baixar o modelo oficial do projeto no computador de quem for apresentar: `ollama pull llama3.1:8b`.
-- [ ] **Decidir onde o Ollama roda em produção** (o plano gratuito do Render não aguenta o Ollama;
-      opções em `docs/DEPLOY.md`).
+- [x] Conta da Groq criada (2026-11-09) e `.env` local preparado com `LLM_PROVIDER=groq`.
+- [x] Contexto alinhado ao documento "Conteúdo Teórico" da equipe (`docs/CONTEXTO.md`).
+- [x] Chave da Groq no `.env` e testada no computador (2026-11-09) com `openai/gpt-oss-20b`.
+- [ ] Trocar a chave da Groq (a primeira apareceu numa conversa) e criar uma separada para o Render.
 - [ ] Publicado no Render; `https://SUA-API/api/health` responde `"ok": true`.
 - [ ] Na Netlify, `VITE_API_URL` aponta para a API (sem `/` no final) + novo deploy; no Render,
       `CORS_ORIGIN` tem o endereço do site.

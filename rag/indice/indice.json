@@ -1,6 +1,6 @@
 {
  "version": 1,
- "created_at": "2026-11-09T03:23:40Z",
+ "created_at": "2026-11-09T17:32:02Z",
  "documents": [
   {
    "id": "alistamento-militar",
@@ -90,7 +90,7 @@
    "category": "seguranca",
    "updated_at": "2026-11-08",
    "status": "rascunho",
-   "chunks": 7
+   "chunks": 8
   },
   {
    "id": "meu-sus-digital",
@@ -561,13 +561,22 @@
    "id": "golpes-digitais#3",
    "doc_id": "golpes-digitais",
    "title": "Golpes digitais — como reconhecer e o que fazer se cair",
-   "heading": "Golpes mais comuns",
+   "heading": "Os gatilhos que os golpistas usam",
    "source": "https://cartilha.cert.br",
    "category": "seguranca",
-   "text": "- **Falso gov.br ou falsa Receita:** \"Seu CPF será cancelado, regularize pelo link\".\n- **Falso dinheiro esquecido:** o Banco Central não manda links nem cobra taxa para devolver valores.\n- **WhatsApp clonado:** alguém pede o código de 6 dígitos que chegou por SMS.\n- **Parente com número novo** pedindo um Pix urgente.\n- **Renda fácil:** \"ganhe por dia curtindo vídeos\" ou vaga de emprego que cobra taxa.\n- **Falso benefício:** mensagem dizendo que você tem Pé-de-Meia, Bolsa Família ou outro benefício\n  para \"liberar\" mediante pagamento ou cadastro em link."
+   "text": "Os golpes mexem com as emoções para a pessoa agir sem pensar:\n\n- **Autoridade:** \"aqui é da Receita\", \"aqui é do banco\".\n- **Urgência e escassez:** \"último dia\", \"só hoje\".\n- **Afeto ou confiança:** \"oi, é seu primo\", \"troquei de número\"."
   },
   {
    "id": "golpes-digitais#4",
+   "doc_id": "golpes-digitais",
+   "title": "Golpes digitais — como reconhecer e o que fazer se cair",
+   "heading": "Golpes mais comuns",
+   "source": "https://cartilha.cert.br",
+   "category": "seguranca",
+   "text": "- **Falsa autoridade (falso gov.br ou falsa Receita):** \"Seu CPF será cancelado, regularize pelo link\".\n- **Falso benefício (dinheiro esquecido):** o Banco Central não manda links nem cobra taxa para devolver valores.\n- **Sequestro de conta (WhatsApp clonado):** alguém pede o código de 6 dígitos que chegou por SMS.\n- **Falsa identidade:** parente ou amigo com número novo pedindo um Pix urgente.\n- **Falsa oportunidade:** \"ganhe por dia curtindo vídeos\" ou vaga de emprego que cobra taxa.\n- **Falso benefício (programas sociais):** mensagem dizendo que você tem Pé-de-Meia, Bolsa Família ou outro benefício\n  para \"liberar\" mediante pagamento ou cadastro em link."
+  },
+  {
+   "id": "golpes-digitais#5",
    "doc_id": "golpes-digitais",
    "title": "Golpes digitais — como reconhecer e o que fazer se cair",
    "heading": "Como conferir um link",
@@ -576,16 +585,16 @@
    "text": "Sites do governo federal terminam em .gov.br. A Justiça usa .jus.br e as Forças Armadas usam .mil.br.\nNo site do Guia do Cidadão Digital, a aba \"Esse link é oficial?\" ajuda a conferir um link ou um SMS\nsuspeito sem abrir o link. O mais seguro é sempre digitar o endereço oficial você mesmo."
   },
   {
-   "id": "golpes-digitais#5",
+   "id": "golpes-digitais#6",
    "doc_id": "golpes-digitais",
    "title": "Golpes digitais — como reconhecer e o que fazer se cair",
    "heading": "Proteja suas contas",
    "source": "https://cartilha.cert.br",
    "category": "seguranca",
-   "text": "- Use senhas longas, como uma frase que só você conhece.\n- Não repita a mesma senha em vários sites.\n- Ative a verificação em duas etapas no WhatsApp, na conta gov.br e nas redes sociais.\n- Instale aplicativos só pela loja oficial do celular.\n- Mantenha o celular atualizado e com bloqueio de tela."
+   "text": "- Use senhas longas, como uma frase que só você conhece.\n- Não repita a mesma senha em vários sites.\n- Ative a verificação em duas etapas no WhatsApp, na conta gov.br e nas redes sociais. Ela junta dois\n  fatores (algo que você sabe, como a senha, e algo que você tem, como o celular): mesmo que roubem a\n  senha, não conseguem entrar.\n- Nunca passe sua biometria (foto do rosto) fora de aplicativos oficiais: é um dado sensível.\n- Instale aplicativos só pela loja oficial do celular.\n- Mantenha o celular atualizado e com bloqueio de tela."
   },
   {
-   "id": "golpes-digitais#6",
+   "id": "golpes-digitais#7",
    "doc_id": "golpes-digitais",
    "title": "Golpes digitais — como reconhecer e o que fazer se cair",
    "heading": "Caiu em um golpe? Aja rápido",
@@ -594,7 +603,7 @@
    "text": "- Avise o banco na hora, pelo aplicativo ou pelo telefone oficial. Em golpe com Pix, peça o MED\n  (Mecanismo Especial de Devolução).\n- Troque as senhas das contas afetadas.\n- Avise seus contatos se sua conta foi clonada.\n- Registre um boletim de ocorrência. Dá para fazer pela delegacia virtual da Polícia Civil.\n- Guarde prints e comprovantes."
   },
   {
-   "id": "golpes-digitais#7",
+   "id": "golpes-digitais#8",
    "doc_id": "golpes-digitais",
    "title": "Golpes digitais — como reconhecer e o que fazer se cair",
    "heading": "Regra de ouro",

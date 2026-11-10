@@ -15,7 +15,7 @@ Resposta `200`, JSON:
 ```json
 {
   "ok": true,
-  "llm": { "provider": "ollama", "model": "llama3.1:8b" },
+  "llm": { "provider": "groq", "model": "openai/gpt-oss-20b" },
   "rag": {
     "ready": true,
     "documents": 13,
@@ -129,7 +129,7 @@ data: {}
 ### Outras regras do `/api/chat`
 
 - Se o aluno fecha a página ou clica em "Parar", a conexão cai e a API **para de chamar a IA** (o
-  pedido ao Ollama é cancelado).
+  pedido à IA é cancelado).
 - Detalhes técnicos de erro vão só para o log do servidor, nunca para o aluno.
 - **Nunca** registrar no log o conteúdo das perguntas.
 
@@ -151,4 +151,4 @@ No repositório do site, o Vite encaminha `/api` para `http://localhost:3001`. E
    - [ ] A resposta aparece aos poucos.
    - [ ] "Fontes consultadas" aparece embaixo da resposta.
    - [ ] "Parar" interrompe a resposta.
-   - [ ] Com o Ollama fechado, aparece "O assistente está indisponível agora..." em português.
+   - [ ] Com a IA fora do ar (ex.: chave errada ou Ollama fechado), aparece "O assistente está indisponível agora..." em português.

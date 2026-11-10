@@ -13,17 +13,30 @@ Antes de qualquer tarefa, leia também o [`GUIA-DO-PROJETO.md`](GUIA-DO-PROJETO.
   Cidadão Digital** (projeto de extensão universitária, Manaus-AM, público: alunos do Ensino Médio).
 - O site (React) fica em outro repositório: https://github.com/MariaLuiza007-Teo/servicos-publicos-digitais
 - A API recebe a conversa, **mascara dados pessoais**, busca trechos na base própria (**RAG com BM25**),
-  manda tudo para um modelo **Llama via Ollama** e devolve a resposta aos pedaços (**SSE**).
+  manda tudo para um modelo de IA **open source** (`openai/gpt-oss-20b` na **Groq**, plano gratuito, em
+  produção; Llama no **Ollama**, opcional, no computador) e devolve a resposta aos pedaços (**SSE**).
 - **Sem banco de dados.** Nada de ninguém é guardado.
 - O frontend **não pode precisar mudar**: a API segue o contrato em [`docs/CONTRATO-API.md`](docs/CONTRATO-API.md).
+
+## Fale a mesma língua da apresentação
+
+O site é material educativo de uma apresentação em cinco eixos (inclusão e letramento digital, governo
+digital, proteção de dados, segurança, desinformação). Textos do assistente, do prompt e do RAG usam os
+mesmos conceitos: **os quatro sinais de golpe** (urgência, pedido de dado ou código, pedido de dinheiro,
+link fora do endereço oficial), **conta gov.br como identidade digital** (bronze, prata, ouro), **PAC e
+CRAS** quando o digital não resolve, e as três mensagens-chave: *acesso digital é direito*, *seus dados
+são seus*, *desconfie e confirme*. Resumo completo em [`docs/CONTEXTO.md`](docs/CONTEXTO.md).
 
 ## Como a equipe trabalha (respeite)
 
 - **Fale em português do Brasil**, simples e direto.
 - **Git é com a pessoa usuária.** Não crie branch, não faça commit, merge, rebase nem push. Edite os
   arquivos e diga o que mudou.
-- **Provedor de IA: Ollama** (é gratuito). Não sugira nem configure Groq ou outros provedores pagos
-  como padrão. O provedor `custom` existe só como saída de emergência.
+- **`.env`:** pode ser editado pela IA (a equipe autorizou), mas **nunca** mostre, copie ou repita o
+  valor de `LLM_API_KEY` em respostas, logs, testes ou documentos. O `.env` está no `.gitignore`.
+- **Custo zero.** Provedor de IA em produção: **Groq, plano gratuito**, modelo `openai/gpt-oss-20b` (os Llama não estão no plano gratuito). No computador:
+  `mock`, `groq` ou `ollama`. Não sugira nada que exija pagamento ou cartão. O provedor `custom` é só
+  saída de emergência. (Groq, com "q", é uma empresa de chips de IA; não é o Grok do X/Elon Musk.)
 - Ao terminar uma etapa, atualize a seção "Situação atual" do `GUIA-DO-PROJETO.md`.
 
 ## Comandos
@@ -83,8 +96,9 @@ Sempre com o ambiente virtual ativado (`source .venv/bin/activate` no Mac/Linux,
 ## Documentação
 
 - [`GUIA-DO-PROJETO.md`](GUIA-DO-PROJETO.md): resumo, decisões, situação atual (comece aqui)
+- [`docs/CONTEXTO.md`](docs/CONTEXTO.md): o projeto de extensão, os cinco eixos e os conceitos da apresentação
 - [`docs/CONTRATO-API.md`](docs/CONTRATO-API.md): o que o frontend espera, campo a campo
 - [`docs/ARQUITETURA.md`](docs/ARQUITETURA.md): fluxo de uma pergunta e por que cada escolha
 - [`docs/RAG.md`](docs/RAG.md): como escrever documentos e rodar a ingestão
-- [`docs/OLLAMA.md`](docs/OLLAMA.md): instalar e escolher o modelo
+- [`docs/IA.md`](docs/IA.md): provedores de IA (Groq e Ollama) e escolha do modelo
 - [`docs/DEPLOY.md`](docs/DEPLOY.md): publicar e ligar ao site

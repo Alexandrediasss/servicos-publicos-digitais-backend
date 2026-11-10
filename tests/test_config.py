@@ -26,6 +26,18 @@ def test_ollama_tem_endereco_e_modelo_padrao():
     assert llm.model == "llama3.1:8b"
 
 
+def test_groq_tem_endereco_e_modelo_padrao():
+    llm = load_settings({"LLM_PROVIDER": "groq", "LLM_API_KEY": "chave-de-teste"}).llm
+    assert llm.base_url == "https://api.groq.com/openai/v1"
+    assert llm.model == "openai/gpt-oss-20b"
+    assert llm.api_key == "chave-de-teste"
+
+
+def test_groq_sem_chave_explica_o_que_falta():
+    with pytest.raises(ConfigError, match="LLM_API_KEY é obrigatório para o provedor groq"):
+        load_settings({"LLM_PROVIDER": "groq"})
+
+
 def test_variaveis_trocam_os_padroes():
     settings = load_settings(
         {
@@ -43,7 +55,7 @@ def test_variaveis_trocam_os_padroes():
 
 
 def test_provedor_invalido_explica_as_opcoes():
-    with pytest.raises(ConfigError, match="mock, ollama, custom"):
+    with pytest.raises(ConfigError, match="mock, ollama, groq, custom"):
         load_settings({"LLM_PROVIDER": "chatgpt"})
 
 
