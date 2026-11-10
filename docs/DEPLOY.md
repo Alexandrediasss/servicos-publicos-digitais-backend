@@ -43,6 +43,7 @@ Siga a seção "Groq" de [IA.md](IA.md). Guarde a chave: ela vai só no painel d
    | `CORS_ORIGIN` | endereço do site, sem `/` no final (ex.: `https://guia-cidadao-digital.netlify.app`) |
    | `TRUST_PROXY` | `1` |
    | `LLM_MODEL` | opcional: deixe vazio (usa `openai/gpt-oss-20b`) ou `openai/gpt-oss-120b` |
+   | `LLM_MAX_TOKENS` / `LLM_REASONING_EFFORT` | opcional: deixe vazio (padrões `1500` / `low`, ver [IA.md](IA.md)) |
 
    O Render define a `PORT` sozinho.
 
@@ -67,6 +68,17 @@ No plano gratuito, a API desliga sozinha depois de uns 15 minutos sem uso. A pr�
 mas pode demorar cerca de 1 minuto; nesse meio-tempo, a aba pode mostrar "Assistente fora do ar no
 momento" e o botão de tentar de novo resolve. **No dia da apresentação, abra o assistente alguns
 minutos antes** e faça uma pergunta de teste.
+
+## Limite da Groq no dia da palestra
+
+O plano gratuito aguenta cerca de **6 perguntas por minuto para o site todo** (8.000 tokens por minuto;
+com `reasoning_effort=low` cada pergunta gasta menos, então na prática sobra um pouco mais). Se a turma
+inteira perguntar ao mesmo tempo, parte dos alunos vai ver "Muita gente perguntando agora. Espere um
+minuto e tente de novo.". Recomendação:
+
+- Testar o assistente **em grupos pequenos** (ex.: uma pergunta por dupla, uma dupla de cada vez).
+- Abrir o assistente alguns minutos antes (o Render "dorme").
+- Ter perguntas de exemplo prontas, que já foram testadas.
 
 ## Checklist
 

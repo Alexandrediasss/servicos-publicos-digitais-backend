@@ -15,7 +15,7 @@ def test_sem_nada_configurado_usa_mock_e_os_padroes():
     assert settings.max_history_messages == 8
     assert settings.rate_limit_per_minute == 20
     assert settings.llm.temperature == 0.2
-    assert settings.llm.max_tokens == 700
+    assert settings.llm.max_tokens == 1500
     assert settings.llm.timeout_seconds == 120
     assert settings.trust_proxy is False
 
@@ -36,6 +36,25 @@ def test_groq_tem_endereco_e_modelo_padrao():
 def test_groq_sem_chave_explica_o_que_falta():
     with pytest.raises(ConfigError, match="LLM_API_KEY é obrigatório para o provedor groq"):
         load_settings({"LLM_PROVIDER": "groq"})
+
+
+def test_gpt_oss_pensa_pouco_por_padrao():
+    # O raciocínio do gpt-oss gasta tokens do max_tokens; "low" evita resposta cortada.
+    llm = load_settings({"LLM_PROVIDER": "groq", "LLM_API_KEY": "chave-de-teste"}).llm
+    assert llm.reasoning_effort == "low"
+
+
+def test_modelos_que_nao_raciocinam_nao_recebem_reasoning_effort():
+    assert load_settings({"LLM_PROVIDER": "ollama"}).llm.reasoning_effort == ""
+    assert load_settings({}).llm.reasoning_effort == ""
+
+
+def test_reasoning_effort_pode_ser_trocado_ou_desligado():
+    base = {"LLM_PROVIDER": "groq", "LLM_API_KEY": "chave-de-teste"}
+    assert load_settings({**base, "LLM_REASONING_EFFORT": "Medium"}).llm.reasoning_effort == "medium"
+    assert load_settings({**base, "LLM_REASONING_EFFORT": "none"}).llm.reasoning_effort == ""
+    with pytest.raises(ConfigError, match="LLM_REASONING_EFFORT inválido"):
+        load_settings({**base, "LLM_REASONING_EFFORT": "altissimo"})
 
 
 def test_variaveis_trocam_os_padroes():

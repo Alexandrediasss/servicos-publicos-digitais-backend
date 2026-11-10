@@ -108,6 +108,8 @@ Cada evento é exatamente `event: NOME\ndata: JSON-EM-UMA-LINHA\n\n`, nesta orde
    - **`error`**: fim com erro no meio do caminho:
      - `{"message": "O assistente está indisponível agora. Tente de novo em alguns minutos."}` quando
        o provedor de IA falha, demora demais ou recusa;
+     - `{"message": "Muita gente perguntando agora. Espere um minuto e tente de novo."}` quando o
+       provedor de IA responde que passou do limite de uso (HTTP 429 do provedor);
      - `{"message": "Algo deu errado ao gerar a resposta."}` para qualquer outro erro.
 
 Exemplo real:
@@ -125,6 +127,10 @@ data: {"text":"você precisa..."}
 event: done
 data: {}
 ```
+
+Se o provedor cortar a resposta por tamanho, o último `token` antes do `done` é o aviso
+`"\n\n_(A resposta ficou longa demais e foi cortada. Tente perguntar sobre um assunto de cada vez.)_"`.
+É texto comum em Markdown: o site não precisa tratar.
 
 ### Outras regras do `/api/chat`
 

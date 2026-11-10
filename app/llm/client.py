@@ -11,10 +11,17 @@ import json
 import re
 import time
 from collections.abc import AsyncIterator
+from dataclasses import dataclass
 
 import httpx
 
 from app.config import LlmSettings
+
+
+# Aviso acrescentado no fim quando o provedor corta a resposta por tamanho (finish_reason="length").
+TRUNCATED_NOTICE = (
+    "\n\n_(A resposta ficou longa demais e foi cortada. Tente perguntar sobre um assunto de cada vez.)_"
+)
 
 
 class LlmError(Exception):
@@ -54,6 +61,8 @@ async def stream_chat(
         "temperature": llm.temperature,
         "max_tokens": llm.max_tokens,
     }
+    if llm.reasoning_effort:
+        payload["reasoning_effort"] = llm.reasoning_effort
     # O timeout do httpx vale para cada etapa (conectar, esperar cada pedaço); o `deadline` limita
     # o tempo total da resposta.
     deadline = time.monotonic() + llm.timeout_seconds
@@ -69,14 +78,22 @@ async def stream_chat(
                         status=response.status_code,
                         detail=detail,
                     )
+                truncated = False
                 async for line in response.aiter_lines():
                     if time.monotonic() > deadline:
                         raise LlmError("O modelo demorou demais para responder.", status=504)
-                    text = parse_stream_line(line)
-                    if text is _DONE:
-                        return
-                    if text:
-                        yield text
+                    piece = parse_stream_line(line)
+                    if piece is _DONE:
+                        break
+                    if piece is None:
+                        continue
+                    if piece.text:
+                        yield piece.text
+                    if piece.finish_reason == "length":
+                        truncated = True
+                if truncated:
+                    # Sem isso, o corte chegaria ao aluno como se fosse o fim normal da resposta.
+                    yield TRUNCATED_NOTICE
     except httpx.TimeoutException as error:
         raise LlmError("O modelo demorou demais para responder.", status=504, detail=repr(error)) from error
     except httpx.HTTPError as error:
@@ -90,11 +107,17 @@ async def stream_chat(
 _DONE = object()
 
 
-def parse_stream_line(line: str) -> str | object | None:
+@dataclass(frozen=True)
+class StreamPiece:
+    text: str = ""
+    finish_reason: str | None = None  # "stop" = terminou; "length" = cortada pelo max_tokens
+
+
+def parse_stream_line(line: str) -> StreamPiece | object | None:
     """Lê uma linha do streaming do provedor.
 
-    Devolve o pedaço de texto, `_DONE` no fim, ou None para linhas sem texto (comentários, vazias,
-    JSON incompleto). Erro enviado pelo provedor no meio do caminho vira LlmError.
+    Devolve um StreamPiece (texto e/ou motivo do fim), `_DONE` no fim, ou None para linhas sem nada
+    útil (comentários, vazias, JSON incompleto). Erro enviado pelo provedor vira LlmError.
     """
     line = line.strip()
     if not line.startswith("data:"):
@@ -110,10 +133,13 @@ def parse_stream_line(line: str) -> str | object | None:
         return None
     if parsed.get("error"):
         raise LlmError("O provedor de IA interrompeu a resposta.", detail=json.dumps(parsed["error"])[:500])
-    choices = parsed.get("choices") or [{}]
-    delta = (choices[0] or {}).get("delta") or {}
-    content = delta.get("content")
-    return content if isinstance(content, str) and content else None
+    choice = (parsed.get("choices") or [{}])[0] or {}
+    content = (choice.get("delta") or {}).get("content")
+    text = content if isinstance(content, str) else ""
+    finish_reason = choice.get("finish_reason") or None
+    if not text and not finish_reason:
+        return None
+    return StreamPiece(text=text, finish_reason=finish_reason)
 
 
 _SOURCE_TITLE = re.compile(r"^\[\d+\] (.+?) — fonte:", re.MULTILINE)

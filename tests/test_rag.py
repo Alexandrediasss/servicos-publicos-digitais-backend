@@ -215,3 +215,65 @@ def test_ingest_monta_o_indice(tmp_path):
 def test_ingest_sem_pasta_gera_indice_vazio(tmp_path):
     index, _ = build_index(tmp_path / "nao-existe")
     assert index["documents"] == [] and index["chunks"] == []
+
+
+# ---------- regras de escolha dos trechos ----------
+
+
+def make_index(*chunks):
+    from app.rag.store import prepare_index
+
+    return prepare_index({"chunks": [dict(chunk) for chunk in chunks]})
+
+
+def chunk(doc_id, title, text, number=1):
+    return {"id": f"{doc_id}#{number}", "doc_id": doc_id, "title": title, "heading": "", "text": text}
+
+
+def test_title_names_separa_os_nomes_do_titulo():
+    from app.rag.keyword import title_names
+
+    assert title_names("ENEM — inscrição") == (frozenset({"enem"}),)
+    assert title_names("Pé-de-Meia — quem recebe") == (frozenset({"pe", "meia"}),)
+    assert title_names("Sisu, ProUni e Fies — nota") == (frozenset({"sisu"}), frozenset({"prouni"}), frozenset({"fie"}))
+    assert title_names("Registrato e Valores a Receber — x") == (frozenset({"registrato"}), frozenset({"valor", "receber"}))
+
+
+def test_no_maximo_dois_trechos_por_documento():
+    index = make_index(
+        *(chunk("vacina", "Vacinação", f"vacina vacina vacina parte {n}", n) for n in range(1, 5)),
+        chunk("ubs", "Posto de saúde", "a vacina também pode ser tomada no posto"),
+    )
+    docs = [r.chunk["doc_id"] for r in retrieve(index, "onde tomo vacina", top_k=4).results]
+    assert docs.count("vacina") == 2
+    assert "ubs" in docs
+
+
+def test_documento_citado_pelo_nome_entra_mesmo_com_nota_baixa():
+    index = make_index(
+        chunk("titulo", "e-Título — título de eleitor", "título de eleitor título de eleitor título digital", 1),
+        chunk("titulo", "e-Título — título de eleitor", "título de eleitor e local de votação", 2),
+        chunk("titulo", "e-Título — título de eleitor", "título de eleitor e biometria", 3),
+        chunk("enem", "ENEM — inscrição", "prova para a faculdade"),
+        chunk("enem-citado", "Sisu — vagas", "use a nota do enem"),
+    )
+    docs = [r.chunk["doc_id"] for r in retrieve(index, "compare o ENEM e o título de eleitor", top_k=4).results]
+    assert "enem" in docs  # o nome "ENEM" está na pergunta e no título do documento
+    assert docs.count("titulo") == 2
+
+
+def test_trechos_com_nota_muito_baixa_saem():
+    index = make_index(
+        chunk("cpf", "CPF", "cpf cancelado regularizar cpf receita federal cpf"),
+        chunk("enem", "ENEM", "a mensagem do resultado do enem chega por e-mail"),
+    )
+    found = retrieve(index, "mensagem dizendo que meu cpf vai ser cancelado", top_k=4)
+    assert [r.chunk["doc_id"] for r in found.results] == ["cpf"]
+    # Sem o corte, o ENEM entraria (só por causa da palavra "mensagem").
+    without_cut = retrieve(index, "mensagem dizendo que meu cpf vai ser cancelado", top_k=4, min_score_ratio=0)
+    assert [r.chunk["doc_id"] for r in without_cut.results] == ["cpf", "enem"]
+
+
+def test_palavras_vazias_novas_nao_contam():
+    assert tokenize("meu CPF vai ser cancelado") == ["cpf", "cancelado"]
+    assert tokenize("onde fica o posto de saúde") == ["posto", "saude"]

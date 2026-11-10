@@ -13,7 +13,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
-from app.rag.keyword import KeywordIndex, build_keyword_index
+from app.rag.keyword import KeywordIndex, build_keyword_index, title_names
 
 INDEX_VERSION = 1
 RETRIEVER_KEYWORD = "palavras-chave"
@@ -27,6 +27,8 @@ class LoadedIndex:
     documents: tuple[dict[str, Any], ...] = ()
     chunks: tuple[dict[str, Any], ...] = ()
     keyword: KeywordIndex = field(default_factory=lambda: build_keyword_index([]))
+    # Nomes de cada documento (ex.: "enem" -> ({"enem"},)), para achar documentos citados na pergunta.
+    doc_names: dict[str, tuple[frozenset[str], ...]] = field(default_factory=dict)
 
     @property
     def ready(self) -> bool:
@@ -51,6 +53,7 @@ def prepare_index(raw: dict[str, Any]) -> LoadedIndex:
         documents=documents,
         chunks=chunks,
         keyword=build_keyword_index(chunks),
+        doc_names={chunk.get("doc_id", ""): title_names(chunk.get("title", "")) for chunk in chunks},
     )
 
 

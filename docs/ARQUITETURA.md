@@ -23,13 +23,17 @@
 2. `read_body_limited`: corpo maior que 32 KB → `413` (para de ler assim que passa do limite).
 3. `validate_messages`: confere o formato, limpa, corta em 1000 caracteres, fica com as 8 últimas → `400` se inválido.
 4. `mask_sensitive` em cada mensagem: troca CPF, cartão e e-mail por marcadores.
-5. `IndexStore.load()` + `retrieve()`: os 4 trechos com maior nota BM25 para a **última** pergunta.
+5. `IndexStore.load()` + `retrieve()`: até 4 trechos para a **última** pergunta, por nota BM25, com
+   documentos citados pelo nome primeiro, no máximo 2 trechos por documento e sem trechos de nota baixa
+   (regras em `docs/RAG.md`).
 6. `build_messages`: mensagem `system` (regras + CONTEXTO com os trechos) + histórico.
 7. `StreamingResponse(event_stream(...))`:
    - `meta` com as fontes (sem repetir documento);
    - `stream_chat()` chama `{LLM_BASE_URL}/chat/completions` com `stream=true` e repassa cada pedaço
      como `token`;
-   - `done` no fim, ou `error` se a IA falhar.
+   - com `reasoning_effort` (gpt-oss) e lendo o `finish_reason`: se a resposta foi cortada por tamanho,
+     acrescenta um aviso como último `token`;
+   - `done` no fim, ou `error` se a IA falhar (`429` do provedor vira "Muita gente perguntando agora").
 8. Se a conexão cai ("Parar" ou página fechada), o Uvicorn cancela o gerador; o `async with` do httpx
    fecha o pedido à IA, que para de gerar. Testado com o Ollama: ele registra "cancel task" na hora.
 

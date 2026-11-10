@@ -22,13 +22,15 @@ STOPWORDS = frozenset(
     os ou como mais mas eu meu minha meus minhas voce seu sua seus suas ele ela eles elas isso isto
     este esta esse essa ter tem tenho qual quais quando onde ja nao sim me te lhe vos foi ser sou
     estou muito pouco bem so sobre ate entre depois antes tambem quero queria preciso fazer faco
-    posso pode
+    posso pode vai vou vamos ir ver mim cada quer saber sei consigo fica
     """.split()
 )
 
 _COMBINING_MARKS = re.compile(r"[̀-ͯ]")
 _NON_WORD = re.compile(r"[^a-z0-9]+")
 _PLURAL_ES = re.compile(r"(res|zes|les)$")
+# Separa os nomes que um título junta: "Sisu, ProUni e Fies", "Cadastro Único (CadÚnico)".
+_TITLE_NAME_SEPARATORS = re.compile(r",|\(|\)| e ")
 
 
 def normalize(text: str) -> str:
@@ -53,6 +55,17 @@ def tokenize(text: str) -> list[str]:
         for token in _NON_WORD.split(normalize(text))
         if len(token) > 1 and token not in STOPWORDS
     ]
+
+
+def title_names(title: str) -> tuple[frozenset[str], ...]:
+    """Nomes do serviço que aparecem no título do documento, já como palavras normalizadas.
+
+    Usa só a parte antes do "—" e separa por vírgula, " e " e parênteses:
+    "Registrato e Valores a Receber — ..." -> ({"registrato"}, {"valor", "receber"}).
+    """
+    main = str(title).split("—")[0]
+    names = (frozenset(tokenize(part)) for part in _TITLE_NAME_SEPARATORS.split(main))
+    return tuple(name for name in names if name)
 
 
 @dataclass(frozen=True)

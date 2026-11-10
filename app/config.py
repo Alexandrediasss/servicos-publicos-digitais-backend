@@ -37,6 +37,12 @@ LLM_DEFAULTS: dict[str, tuple[str, str]] = {
 # Provedores que só funcionam com chave (LLM_API_KEY).
 PROVIDERS_NEEDING_KEY = {"groq"}
 
+# "Esforço de raciocínio" dos modelos que pensam antes de responder (como o gpt-oss). O raciocínio
+# gasta tokens do LLM_MAX_TOKENS; com "low" sobra espaço para a resposta e cada pergunta gasta menos.
+REASONING_EFFORTS = ("low", "medium", "high")
+REASONING_MODEL_PREFIXES = ("openai/gpt-oss",)
+DEFAULT_REASONING_EFFORT = "low"
+
 
 class ConfigError(Exception):
     """Configuração inválida. A mensagem explica, em português, o que corrigir."""
@@ -51,6 +57,8 @@ class LlmSettings:
     temperature: float
     max_tokens: int
     timeout_seconds: float
+    # Vazio = o campo "reasoning_effort" não é enviado (provedores como o Ollama podem não aceitar).
+    reasoning_effort: str = ""
     # Pausa entre as palavras no modo "mock", para imitar o streaming de uma IA de verdade.
     mock_delay_seconds: float = 0.015
 
@@ -96,6 +104,19 @@ def _flag(env: Mapping[str, str], name: str) -> bool:
     return _text(env, name, "0").lower() in {"1", "true", "sim", "yes"}
 
 
+def _reasoning_effort(env: Mapping[str, str], model: str, problems: list[str]) -> str:
+    """LLM_REASONING_EFFORT: low | medium | high | none. Vazio = "low" nos modelos que raciocinam."""
+    raw = _text(env, "LLM_REASONING_EFFORT").lower()
+    if not raw:
+        return DEFAULT_REASONING_EFFORT if model.startswith(REASONING_MODEL_PREFIXES) else ""
+    if raw == "none":
+        return ""
+    if raw not in REASONING_EFFORTS:
+        problems.append(f'LLM_REASONING_EFFORT inválido: "{raw}". Use low, medium, high ou none.')
+        return ""
+    return raw
+
+
 def load_settings(env: Mapping[str, str] | None = None) -> Settings:
     """Lê a configuração. Sem `env`, usa o `.env` da raiz + as variáveis do sistema."""
     if env is None:
@@ -116,8 +137,9 @@ def load_settings(env: Mapping[str, str] | None = None) -> Settings:
         model=_text(env, "LLM_MODEL", default_model),
         api_key=_text(env, "LLM_API_KEY"),
         temperature=_number(env, "LLM_TEMPERATURE", 0.2, problems),
-        max_tokens=int(_number(env, "LLM_MAX_TOKENS", 700, problems)),
+        max_tokens=int(_number(env, "LLM_MAX_TOKENS", 1500, problems)),
         timeout_seconds=_number(env, "LLM_TIMEOUT_MS", 120_000, problems) / 1000,
+        reasoning_effort=_reasoning_effort(env, _text(env, "LLM_MODEL", default_model), problems),
     )
     if provider != "mock":
         if not llm.base_url:

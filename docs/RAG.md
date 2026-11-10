@@ -99,8 +99,24 @@ conferidos estão marcados com `CONFERIR` nos comentários `<!-- -->` de cada ar
 - Normaliza o texto: minúsculas, sem acentos, sem palavras vazias ("de", "para", "quero", "preciso"...).
 - "Stemming" simples: `inscrições → inscricao`, `mulheres → mulher`, `vacinas → vacina`.
 - O título do documento conta duas vezes (ajuda a achar o documento certo).
-- Pega os 4 trechos com maior nota (`RAG_TOP_K`). Se nenhum trecho tem palavra da pergunta, a IA
-  recebe o aviso de que não há contexto e responde só com orientações gerais.
+- Escolhe até 4 trechos (`RAG_TOP_K`) com três regras (`app/rag/retriever.py`, desde 2026-11-09):
+  1. **Documento citado pelo nome entra primeiro.** Se a pergunta tem o nome do serviço que está no
+     `titulo` (a parte antes do "—"; ex.: "ENEM", "Pé-de-Meia", "título", "Valores a Receber"), o melhor
+     trecho desse documento entra mesmo com nota baixa. Assim, "compare o Pé-de-Meia, o ENEM e o título
+     de eleitor" traz os três. Por isso, **o nome do serviço precisa estar no começo do `titulo`**.
+  2. **No máximo 2 trechos por documento**, para sobrar espaço para outros assuntos da pergunta.
+  3. **Trechos com nota menor que 40% da melhor saem.** Eles viravam "Fontes consultadas" sem relação
+     com a pergunta (ex.: o ENEM aparecia na pergunta sobre CPF cancelado só por causa da palavra "vai").
+- Se nenhum trecho tem palavra da pergunta, a IA recebe o aviso de que não há contexto e responde só
+  com orientações gerais.
+
+### Testar a busca
+
+`tests/test_rag_base.py` faz perguntas de referência na **base real** (ex.: "Recebi uma mensagem
+dizendo que meu CPF vai ser cancelado." precisa trazer só CPF e Golpes digitais). Depois de mudar um
+documento e rodar o ingest, rode `python -m pytest`: se um desses testes falhar, a mudança piorou a
+busca para uma pergunta comum. Ajuste o documento (palavras que os alunos usam, nome no título) antes
+de mexer no teste.
 
 Para testar a busca sem a IA, rode na raiz do projeto:
 

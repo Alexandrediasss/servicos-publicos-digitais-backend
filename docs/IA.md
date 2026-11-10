@@ -51,15 +51,32 @@ curl -s https://api.groq.com/openai/v1/models -H "Authorization: Bearer SUA_CHAV
 
 Para trocar: `LLM_MODEL=openai/gpt-oss-120b`.
 
+### Raciocínio e tamanho da resposta (resposta cortada no meio)
+
+O gpt-oss **raciocina antes de responder**, e esse raciocínio também conta no `LLM_MAX_TOKENS`. Com o
+limite antigo (700), uma pergunta sobre três serviços foi cortada no meio da frase. Por isso
+(2026-11-09):
+
+- **`LLM_REASONING_EFFORT`** (`low` | `medium` | `high` | `none`). Vazio = `low` nos modelos
+  `openai/gpt-oss*` e nada nos outros (o campo nem é enviado, porque o Ollama e outros podem não
+  aceitar). Com `low`, o raciocínio cai de ~200 para ~50 tokens e cada pergunta gasta menos do limite.
+- **`LLM_MAX_TOKENS=1500`** (antes 700). A Groq não desconta o `max_tokens` inteiro do limite por
+  minuto, só o que foi usado (medido em 2026-11-09), então subir não gasta mais.
+- Se mesmo assim o provedor cortar (`finish_reason="length"`), a API acrescenta no fim da resposta:
+  *"(A resposta ficou longa demais e foi cortada. Tente perguntar sobre um assunto de cada vez.)"*.
+  Antes o corte chegava ao aluno como se fosse o fim normal.
+
 **Limites do plano gratuito** (medidos em 2026-11-09 nos cabeçalhos da resposta, iguais para os dois
 gpt-oss): **1.000 pedidos por dia** e **8.000 tokens por minuto** (token ≈ pedaço de palavra). Cada
 pergunta do site gasta uns **1.300 tokens** (regras + trechos do RAG + resposta), então o site todo
 aguenta umas **6 perguntas por minuto**. Os números podem mudar: confira em
 https://console.groq.com/settings/limits. Quando o limite estoura, a Groq responde `429` e o site
-mostra "O assistente está indisponível agora. Tente de novo em alguns minutos.".
+mostra "Muita gente perguntando agora. Espere um minuto e tente de novo.".
 
 Na apresentação, se muitos alunos perguntarem ao mesmo tempo, o limite de tokens por minuto é o que
-estoura primeiro: algumas respostas vão falhar até o minuto virar.
+estoura primeiro: algumas respostas vão falhar até o minuto virar. **Testem em grupos pequenos** (ex.:
+uma pergunta por dupla, uma dupla de cada vez) e abram o assistente alguns minutos antes, porque o
+Render gratuito "dorme".
 
 **Privacidade.** Com a Groq, a pergunta (já sem CPF, cartão e e-mail) é processada por uma empresa de
 fora. Por isso a API mascara tudo antes de enviar e nunca grava as perguntas.
@@ -92,7 +109,8 @@ todo.
 | --- | --- | --- |
 | "Assistente fora do ar no momento" | A API não está rodando (ou está acordando no Render) | Abra `/api/health` e espere |
 | "O assistente está indisponível agora" + log `401` | Chave da Groq errada ou apagada | Confira `LLM_API_KEY` |
-| "O assistente está indisponível agora" + log `429` | Limite do plano gratuito da Groq | Espere o minuto virar (ou o dia, se passou de 1.000 pedidos) |
+| "Muita gente perguntando agora" (log `429`) | Limite do plano gratuito da Groq | Espere o minuto virar (ou o dia, se passou de 1.000 pedidos) |
+| Resposta termina com "(A resposta ficou longa demais e foi cortada...)" | O modelo passou do `LLM_MAX_TOKENS` | Pergunte um assunto por vez; se acontecer muito, suba o `LLM_MAX_TOKENS` |
 | "O assistente está indisponível agora" + log `404` / `model not found` | Nome do modelo errado (ou modelo saiu do ar na Groq) | Confira a lista em https://console.groq.com/docs/models |
 | "O assistente está indisponível agora" com Ollama | Ollama fechado ou modelo não baixado | Abra o Ollama; `ollama pull llama3.1:8b` |
 | A API nem liga: "LLM_API_KEY é obrigatório para o provedor groq" | Falta a chave | Coloque `LLM_API_KEY` no `.env` ou no Render |

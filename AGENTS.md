@@ -63,11 +63,11 @@ Sempre com o ambiente virtual ativado (`source .venv/bin/activate` no Mac/Linux,
 | `app/utils/validation.py` | Valida a conversa; mensagens de erro do contrato |
 | `app/utils/rate_limit.py` | 20 pedidos/min por IP, em memória; IP real via `X-Forwarded-For` com `TRUST_PROXY=1` |
 | `app/utils/sse.py` | Formato `event: X\ndata: JSON\n\n` e cabeçalhos do streaming |
-| `app/llm/client.py` | `/chat/completions` com `stream=true` (httpx); modo `mock`; `LlmError` |
+| `app/llm/client.py` | `/chat/completions` com `stream=true` (httpx); `reasoning_effort`; aviso se `finish_reason="length"`; modo `mock`; `LlmError` |
 | `app/prompts/system.py` | Prompt de sistema + montagem do CONTEXTO com os trechos |
-| `app/rag/` | `frontmatter`, `chunker` (~900 caracteres por seção), `keyword` (BM25), `store` (índice com recarga), `retriever` |
+| `app/rag/` | `frontmatter`, `chunker` (~900 caracteres por seção), `keyword` (BM25), `store` (índice com recarga), `retriever` (citados pelo nome primeiro, máx. 2 por documento, corte em 40% da melhor nota) |
 | `scripts/ingest.py` | Lê `rag/documentos/*.md` e grava `rag/indice/indice.json` |
-| `tests/` | pytest. `conftest.py` tem `make_settings()` e `parse_sse()` |
+| `tests/` | pytest. `conftest.py` tem `make_settings()` e `parse_sse()`. `test_rag_base.py` testa a busca na base real |
 
 ## Regras que NÃO podem ser quebradas
 

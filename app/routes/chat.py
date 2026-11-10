@@ -36,6 +36,8 @@ logger = logging.getLogger("guia.chat")
 
 ERROR_BODY_TOO_LARGE = "Sua mensagem ficou grande demais. Tente resumir."
 ERROR_LLM_UNAVAILABLE = "O assistente está indisponível agora. Tente de novo em alguns minutos."
+# Limite do plano gratuito do provedor (HTTP 429): muita gente perguntando ao mesmo tempo.
+ERROR_LLM_BUSY = "Muita gente perguntando agora. Espere um minuto e tente de novo."
 ERROR_GENERIC = "Algo deu errado ao gerar a resposta."
 
 
@@ -131,7 +133,8 @@ async def event_stream(
     except LlmError as error:
         # Só detalhes técnicos no log (status e resposta do provedor), nunca a pergunta.
         logger.error("Falha no provedor de IA (%s): %s %s", llm.provider, error, error.detail)
-        yield format_event("error", {"message": ERROR_LLM_UNAVAILABLE})
+        message = ERROR_LLM_BUSY if error.status == 429 else ERROR_LLM_UNAVAILABLE
+        yield format_event("error", {"message": message})
     except Exception as error:  # noqa: BLE001 - qualquer outro erro vira mensagem genérica
         # Registra o tipo do erro e onde aconteceu, mas não a mensagem (ela poderia citar o texto).
         frame = traceback.extract_tb(error.__traceback__)[-1] if error.__traceback__ else None

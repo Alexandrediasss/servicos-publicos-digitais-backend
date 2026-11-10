@@ -8,7 +8,7 @@ import httpx
 import pytest
 
 from app.config import load_settings
-from app.llm.client import LlmError, mock_stream, parse_stream_line, stream_chat
+from app.llm.client import TRUNCATED_NOTICE, LlmError, StreamPiece, mock_stream, parse_stream_line, stream_chat
 
 LLM = load_settings({"LLM_PROVIDER": "ollama"}).llm
 
@@ -40,8 +40,44 @@ def test_le_o_streaming_no_formato_openai():
     assert sent["body"]["stream"] is True
     assert sent["body"]["model"] == "llama3.1:8b"
     assert sent["body"]["temperature"] == 0.2
-    assert sent["body"]["max_tokens"] == 700
+    assert sent["body"]["max_tokens"] == 1500
+    assert "reasoning_effort" not in sent["body"]  # Llama no Ollama não raciocina
     assert sent["auth"] is None  # Ollama local não usa chave
+
+
+def test_envia_reasoning_effort_quando_configurado():
+    llm = dataclasses.replace(LLM, model="openai/gpt-oss-20b", reasoning_effort="low")
+    sent = {}
+
+    def handler(request):
+        sent["body"] = json.loads(request.content)
+        return httpx.Response(200, text=openai_stream("ok"))
+
+    collect(llm, httpx.MockTransport(handler))
+    assert sent["body"]["reasoning_effort"] == "low"
+
+
+def finished(reason: str, *pieces: str) -> str:
+    lines = [f"data: {json.dumps({'choices': [{'delta': {'content': p}}]})}" for p in pieces]
+    lines.append(f"data: {json.dumps({'choices': [{'delta': {}, 'finish_reason': reason}]})}")
+    return "\n\n".join([*lines, "data: [DONE]"]) + "\n\n"
+
+
+def test_resposta_cortada_pelo_limite_ganha_aviso_no_fim():
+    transport = httpx.MockTransport(lambda request: httpx.Response(200, text=finished("length", "Mostra seu título e")))
+    pieces = collect(LLM, transport)
+    assert pieces == ["Mostra seu título e", TRUNCATED_NOTICE]
+    assert "foi cortada" in TRUNCATED_NOTICE
+
+
+def test_resposta_completa_nao_ganha_aviso():
+    transport = httpx.MockTransport(lambda request: httpx.Response(200, text=finished("stop", "Tudo certo.")))
+    assert collect(LLM, transport) == ["Tudo certo."]
+
+
+def test_parse_stream_line_le_texto_e_motivo_do_fim():
+    assert parse_stream_line('data: {"choices": [{"delta": {"content": "oi"}}]}') == StreamPiece("oi", None)
+    assert parse_stream_line('data: {"choices": [{"delta": {}, "finish_reason": "length"}]}') == StreamPiece("", "length")
 
 
 def test_envia_a_chave_quando_existe():

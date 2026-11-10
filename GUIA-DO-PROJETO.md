@@ -107,10 +107,13 @@ servicos-publicos-digitais-backend/
 | Log de acesso desligado | O log de acesso grava o IP de quem acessa; só erros são registrados |
 | Documentos do RAG começam como `status: rascunho` | Toda informação precisa ser conferida na fonte oficial antes de valer |
 | Sem página `/docs` automática do FastAPI | A API só serve o site |
+| `reasoning_effort=low` e `LLM_MAX_TOKENS=1500` no gpt-oss; aviso quando a resposta é cortada (2026-11-09) | O raciocínio do gpt-oss conta no limite de tokens e cortava respostas longas no meio, sem aviso. Achado no teste com o site |
+| RAG: documento citado pelo nome primeiro, máx. 2 trechos por documento, corte em 40% da melhor nota (2026-11-09) | Pergunta sobre três serviços só trazia um documento, e perguntas simples traziam "Fontes consultadas" sem relação. Calibrado com perguntas de teste (`tests/test_rag_base.py`) |
+| Erro 429 da Groq vira "Muita gente perguntando agora..." | O limite gratuito (~6 perguntas/min no site todo) pode estourar na palestra; a mensagem explica o que fazer |
 
 ## Situação atual
 
-Atualizado em 2026-11-08.
+Atualizado em 2026-11-09.
 
 - [x] Projeto criado (FastAPI, configuração, `.env.example`, testes).
 - [x] `GET /api/health` no formato do contrato.
@@ -133,6 +136,12 @@ Atualizado em 2026-11-08.
 - [x] Publicado no Render (2026-11-09): https://servicos-publicos-digitais-backend.onrender.com
       (`/api/health` ok, chat com streaming, CPF mascarado, erro 400 e CORS de `localhost:5173`
       conferidos; testado também com o site local apontando para o Render).
+- [x] Pasta do projeto movida para `MyWorkSpace/servicos-publicos-digitais-backend` (antes estava,
+      por engano, dentro da pasta do site). Nenhum arquivo citava o caminho antigo.
+- [x] Ajustes da revisão feita pelo frontend (2026-11-09): resposta cortada (raciocínio `low`, 1500
+      tokens, aviso de corte), RAG com vários documentos e sem fontes estranhas, mensagem clara para o
+      limite da Groq. Testado na Groq e com o site local nas 3 perguntas de referência.
+- [ ] Mandar essas mudanças para o GitHub (o Render só publica o que está na `main`).
 - [ ] Na Netlify, `VITE_API_URL` aponta para a API (sem `/` no final) + novo deploy; no Render,
       `CORS_ORIGIN` tem o endereço do site.
 

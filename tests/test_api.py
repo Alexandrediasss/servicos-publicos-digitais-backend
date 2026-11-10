@@ -215,3 +215,28 @@ def test_cors_com_varias_origens(tmp_path, index_file):
     client = TestClient(create_app(make_settings(tmp_path, cors_origins=origins)))
     response = client.get("/api/health", headers={"Origin": origins[1]})
     assert response.headers["access-control-allow-origin"] == origins[1]
+
+
+def ollama_settings(tmp_path):
+    settings = make_settings(tmp_path)
+    return dataclasses.replace(settings, llm=dataclasses.replace(settings.llm, provider="ollama", base_url="http://ia"))
+
+
+def test_limite_do_provedor_vira_mensagem_de_muita_gente(tmp_path, index_file):
+    transport = httpx.MockTransport(lambda request: httpx.Response(429, json={"error": {"message": "rate limit"}}))
+    client = TestClient(create_app(ollama_settings(tmp_path), llm_transport=transport))
+    events = parse_sse(client.post("/api/chat", json=ASK_ENEM).text)
+    assert events[-1] == ("error", {"message": "Muita gente perguntando agora. Espere um minuto e tente de novo."})
+
+
+def test_resposta_cortada_chega_ao_site_com_aviso_e_done(tmp_path, index_file):
+    body = (
+        'data: {"choices":[{"delta":{"content":"Mostra seu título e"}}]}\n\n'
+        'data: {"choices":[{"delta":{},"finish_reason":"length"}]}\n\n'
+        "data: [DONE]\n\n"
+    )
+    transport = httpx.MockTransport(lambda request: httpx.Response(200, text=body))
+    client = TestClient(create_app(ollama_settings(tmp_path), llm_transport=transport))
+    events = parse_sse(client.post("/api/chat", json=ASK_ENEM).text)
+    assert [name for name, _ in events] == ["meta", "token", "token", "done"]
+    assert "foi cortada" in events[2][1]["text"]
