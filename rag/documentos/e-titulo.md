@@ -1,5 +1,5 @@
 ---
-titulo: e-Título — título de eleitor digital e voto aos 16 anos
+titulo: e-Título — título de eleitor digital e voto a partir dos 16 anos
 fonte: https://www.tse.jus.br/servicos-eleitorais/servicos/aplicativo-e-titulo
 categoria: cidadania
 atualizado_em: 2026-11-08
@@ -12,6 +12,8 @@ status: rascunho
   CONFERIR: como tirar o primeiro título pela internet (Autoatendimento Eleitoral / Título Net) e
   quando é preciso ir ao cartório eleitoral para a biometria.
   CONFERIR: o prazo de fechamento do cadastro antes de cada eleição.
+  POR QUE "A PARTIR DOS 16" APARECE TANTAS VEZES: com o título antigo ("voto aos 16 anos"), a IA
+  respondia "serve para votar (até 16 anos)" (teste de 2026-11-09). Deixe a idade sempre explícita.
 -->
 
 # e-Título
@@ -22,9 +24,12 @@ O e-Título é o aplicativo da Justiça Eleitoral. Ele é o título de eleitor d
 eleição, ele pode ser usado no lugar do título de papel. Também mostra o seu local de votação e se o
 seu título está regular.
 
+Quem tem 16 ou 17 anos já pode tirar o título e votar, se quiser.
+
 ## Quem pode usar
 
-- Com 16 e 17 anos, tirar o título e votar é opcional (facultativo).
+- A partir dos 16 anos, você já pode tirar o título de eleitor e votar.
+- Com 16 e 17 anos, votar é opcional (facultativo): vota quem quiser.
 - Dos 18 aos 70 anos, votar é obrigatório.
 - Acima dos 70 anos, volta a ser opcional.
 

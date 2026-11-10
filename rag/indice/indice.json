@@ -1,6 +1,6 @@
 {
  "version": 1,
- "created_at": "2026-11-09T17:32:02Z",
+ "created_at": "2026-11-10T02:42:51Z",
  "documents": [
   {
    "id": "alistamento-militar",
@@ -65,7 +65,7 @@
   {
    "id": "e-titulo",
    "file": "e-titulo.md",
-   "title": "e-Título — título de eleitor digital e voto aos 16 anos",
+   "title": "e-Título — título de eleitor digital e voto a partir dos 16 anos",
    "source": "https://www.tse.jus.br/servicos-eleitorais/servicos/aplicativo-e-titulo",
    "category": "cidadania",
    "updated_at": "2026-11-08",
@@ -434,25 +434,25 @@
   {
    "id": "e-titulo#1",
    "doc_id": "e-titulo",
-   "title": "e-Título — título de eleitor digital e voto aos 16 anos",
+   "title": "e-Título — título de eleitor digital e voto a partir dos 16 anos",
    "heading": "Para que serve",
    "source": "https://www.tse.jus.br/servicos-eleitorais/servicos/aplicativo-e-titulo",
    "category": "cidadania",
-   "text": "O e-Título é o aplicativo da Justiça Eleitoral. Ele é o título de eleitor digital: no dia da\neleição, ele pode ser usado no lugar do título de papel. Também mostra o seu local de votação e se o\nseu título está regular."
+   "text": "O e-Título é o aplicativo da Justiça Eleitoral. Ele é o título de eleitor digital: no dia da\neleição, ele pode ser usado no lugar do título de papel. Também mostra o seu local de votação e se o\nseu título está regular.\n\nQuem tem 16 ou 17 anos já pode tirar o título e votar, se quiser."
   },
   {
    "id": "e-titulo#2",
    "doc_id": "e-titulo",
-   "title": "e-Título — título de eleitor digital e voto aos 16 anos",
+   "title": "e-Título — título de eleitor digital e voto a partir dos 16 anos",
    "heading": "Quem pode usar",
    "source": "https://www.tse.jus.br/servicos-eleitorais/servicos/aplicativo-e-titulo",
    "category": "cidadania",
-   "text": "- Com 16 e 17 anos, tirar o título e votar é opcional (facultativo).\n- Dos 18 aos 70 anos, votar é obrigatório.\n- Acima dos 70 anos, volta a ser opcional.\n\nPara usar o e-Título, você precisa já ter o título de eleitor."
+   "text": "- A partir dos 16 anos, você já pode tirar o título de eleitor e votar.\n- Com 16 e 17 anos, votar é opcional (facultativo): vota quem quiser.\n- Dos 18 aos 70 anos, votar é obrigatório.\n- Acima dos 70 anos, volta a ser opcional.\n\nPara usar o e-Título, você precisa já ter o título de eleitor."
   },
   {
    "id": "e-titulo#3",
    "doc_id": "e-titulo",
-   "title": "e-Título — título de eleitor digital e voto aos 16 anos",
+   "title": "e-Título — título de eleitor digital e voto a partir dos 16 anos",
    "heading": "Onde acessar",
    "source": "https://www.tse.jus.br/servicos-eleitorais/servicos/aplicativo-e-titulo",
    "category": "cidadania",
@@ -461,7 +461,7 @@
   {
    "id": "e-titulo#4",
    "doc_id": "e-titulo",
-   "title": "e-Título — título de eleitor digital e voto aos 16 anos",
+   "title": "e-Título — título de eleitor digital e voto a partir dos 16 anos",
    "heading": "O que dá para fazer",
    "source": "https://www.tse.jus.br/servicos-eleitorais/servicos/aplicativo-e-titulo",
    "category": "cidadania",
@@ -470,7 +470,7 @@
   {
    "id": "e-titulo#5",
    "doc_id": "e-titulo",
-   "title": "e-Título — título de eleitor digital e voto aos 16 anos",
+   "title": "e-Título — título de eleitor digital e voto a partir dos 16 anos",
    "heading": "Como tirar o primeiro título",
    "source": "https://www.tse.jus.br/servicos-eleitorais/servicos/aplicativo-e-titulo",
    "category": "cidadania",
@@ -479,7 +479,7 @@
   {
    "id": "e-titulo#6",
    "doc_id": "e-titulo",
-   "title": "e-Título — título de eleitor digital e voto aos 16 anos",
+   "title": "e-Título — título de eleitor digital e voto a partir dos 16 anos",
    "heading": "Cuidados",
    "source": "https://www.tse.jus.br/servicos-eleitorais/servicos/aplicativo-e-titulo",
    "category": "cidadania",

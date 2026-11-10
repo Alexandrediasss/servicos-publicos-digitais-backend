@@ -141,6 +141,8 @@ Atualizado em 2026-11-09.
 - [x] Ajustes da revisão feita pelo frontend (2026-11-09): resposta cortada (raciocínio `low`, 1500
       tokens, aviso de corte), RAG com vários documentos e sem fontes estranhas, mensagem clara para o
       limite da Groq. Testado na Groq e com o site local nas 3 perguntas de referência.
+- [x] `e-titulo.md`: idade do voto sempre explícita ("a partir dos 16 anos"). Com o título antigo,
+      a IA dizia "votar (até 16 anos)". Conferido na Groq em 2026-11-09.
 - [ ] Mandar essas mudanças para o GitHub (o Render só publica o que está na `main`).
 - [ ] Na Netlify, `VITE_API_URL` aponta para a API (sem `/` no final) + novo deploy; no Render,
       `CORS_ORIGIN` tem o endereço do site.
