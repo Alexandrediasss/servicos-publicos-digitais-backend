@@ -129,8 +129,10 @@ Atualizado em 2026-11-08.
 - [x] Conta da Groq criada (2026-11-09) e `.env` local preparado com `LLM_PROVIDER=groq`.
 - [x] Contexto alinhado ao documento "Conteúdo Teórico" da equipe (`docs/CONTEXTO.md`).
 - [x] Chave da Groq no `.env` e testada no computador (2026-11-09) com `openai/gpt-oss-20b`.
-- [ ] Trocar a chave da Groq (a primeira apareceu numa conversa) e criar uma separada para o Render.
-- [ ] Publicado no Render; `https://SUA-API/api/health` responde `"ok": true`.
+- [ ] Apagar a primeira chave da Groq (apareceu numa conversa) e colar uma nova no `.env` local.
+- [x] Publicado no Render (2026-11-09): https://servicos-publicos-digitais-backend.onrender.com
+      (`/api/health` ok, chat com streaming, CPF mascarado, erro 400 e CORS de `localhost:5173`
+      conferidos; testado também com o site local apontando para o Render).
 - [ ] Na Netlify, `VITE_API_URL` aponta para a API (sem `/` no final) + novo deploy; no Render,
       `CORS_ORIGIN` tem o endereço do site.
 
